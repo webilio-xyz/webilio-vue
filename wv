@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Check if the first argument is "up"
+if [ "$1" == "up" ]; then
+    # Start the Docker Compose
+    docker compose up -d
+elif [ "$1" == "down" ]; then
+    # Stop the Docker Compose
+    docker compose down
+else
+    # Set the container name
+    CONTAINER_NAME="webilio-vue"
+
+    # Check if the container is running
+    if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        echo "Container $CONTAINER_NAME is running"
+    else
+        echo "Container $CONTAINER_NAME is not running"
+        exit 1
+    fi
+
+    # Get all the arguments
+
+    echo "$@"
+    # Execute a command inside the container with all the arguments
+    docker exec -it $CONTAINER_NAME "$@"
+fi

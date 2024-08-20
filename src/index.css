@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body #app{
+    width: 100vw;
+    max-width: 100vw;
+}
+*[data-applied-style-tokens=componentDemoHr] {
+    @apply m-2;
+    @apply border-none;
+}
+*[data-applied-style-tokens=componentDemo] {
+    @apply max-w-full;
+}
+*[data-applied-style-tokens=propsPlaygroundForm] {
+    @apply grid;
+    @apply grid-cols-none;
+    @apply grid-cols-6;
+    @apply gap-4;
+    @apply max-w-full;
+    @apply p-2;
+}
+*[data-applied-style-tokens=formFieldFieldset] {
+    @apply p-2;
+    @apply border;
+    @apply border-gray-300;
+    @apply rounded;
+    @apply flex;
+    @apply flex-1;
+}
+*[data-applied-style-tokens=formFieldCheckboxContainer] {
+    @apply flex;
+    @apply space-x-2;
+    @apply items-center;
+}
+*[data-applied-style-tokens=tabsButtonContainer] {
+    @apply flex;
+    @apply space-x-2;
+    @apply items-center;
+    @apply m-1;
+}
+*[data-applied-style-tokens=tabsButtonContainer] button {
+    @apply border;
+    @apply p-2;
+    @apply hover:border-blue-200;
+}
+*[data-applied-style-tokens="tabButton tabButtonSelected"] {
+    @apply font-semibold;
+}
+*[data-applied-style-tokens="sidebarButton sidebarButtonSelected"] {
+    @apply font-semibold;
+}
+*[data-applied-style-tokens="sidebarContainer"] button {
+    @apply hover:bg-gray-100;
+    @apply py-1.5;
+    @apply border-b;
+    @apply px-4;
+}
+*[data-applied-style-tokens="emitLogClearButton"] {
+    @apply border;
+    @apply border-gray-900;
+    @apply p-1;
+    @apply rounded;
+    @apply bg-gray-200;
+    @apply hover:bg-gray-300;
+    @apply text-black;
+    @apply capitalize;
+}
+*[data-applied-style-tokens="componentDemoH3"], *[data-applied-style-tokens="demoHeaderTitle"] {
+    @apply border-b;
+    @apply py-2;
+    @apply text-2xl;
+    @apply mt-4;
+    @apply mb-2;
+    @apply font-semibold;
+}
+*[data-applied-style-tokens="propsDocumentationCode"], *[data-applied-style-tokens="emitsDocumentationCode"] {
+    @apply p-2;
+    @font-face {
+        font-family: "Fira Code", monospace;
+        src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
+    }
+    @apply bg-gray-100;
+}
+*[data-applied-style-tokens="propsDocumentationLi"],
+*[data-applied-style-tokens="emitsDocumentationLi"] {
+    @apply border-b;
+    @apply py-2;
+    @apply mb-2;
+}
+*[data-applied-style-tokens="propsDocumentationLi"] *[data-applied-style-tokens="propsDocumentationLi"],
+*[data-applied-style-tokens="emitsDocumentationLi"] *[data-applied-style-tokens="emitsDocumentationLi"]
+{
+    @apply border-none;
+}

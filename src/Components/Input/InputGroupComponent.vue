@@ -1,0 +1,97 @@
+<script setup>
+import {computed, onMounted, ref} from 'vue';
+import { uniqueId} from "lodash-es";
+import ErrorComponent from "./ErrorComponent.vue";
+import InputComponent from "./InputComponent.vue";
+import LabelComponent from "./LabelComponent.vue";
+
+const props = defineProps({
+    modelValue: String,
+    label: String,
+    type: {
+        type: String,
+        default: 'text',
+    },
+    name: String,
+    value: {},
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    options: {
+        type: Array,
+        default: () => []
+    },
+    placeholder: String,
+    min: {
+        type: [null, String],
+        default: null
+    },
+    max: {
+      type: [null, String],
+        default: null
+    },
+    errors: {
+        type: String,
+        default: () => null
+    },
+    range: {
+        type: Boolean,
+        default: false
+    },
+    multiple: {
+        type: Boolean,
+        default: false
+    }
+});
+
+const emit = defineEmits(['update:modelValue']);
+
+const input = ref(null);
+
+const formGroupUniqueId = ref(null);
+
+onMounted(() => {
+    formGroupUniqueId.value = uniqueId('input_group_');
+});
+
+const maska = computed(() => {
+    if (props.type === 'tel') {
+        return '(###) ###-####'
+    }
+    return null;
+})
+</script>
+
+<template>
+    <div class="w-full" :class="{ 'error': errors !== null && errors !== ''}">
+        <LabelComponent
+            :for="formGroupUniqueId"
+            :value="label"
+            class="w-full mb-2"
+        >
+          {{label}}
+        </LabelComponent>
+
+        <InputComponent
+            :id="formGroupUniqueId"
+            :name="name"
+            :model-value="modelValue"
+            :disabled="disabled"
+            :multiple="multiple"
+            :options="options"
+            :max="max"
+            :min="min"
+            :range="range"
+            :mask="maska"
+            :placeholder="placeholder"
+            @update:model-value="emit('update:modelValue', $event)"
+        />
+
+        <ErrorComponent
+            v-if="errors"
+            class="mt-2"
+            :message="errors"
+        />
+    </div>
+</template>

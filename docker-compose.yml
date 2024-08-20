@@ -1,0 +1,16 @@
+services:
+   webilio-vue:
+        container_name: webilio-vue
+        image: node:22
+        working_dir: /home/node/app
+        user: node
+        ports:
+            - '${APP_PORT:-6060}:5173'
+        volumes:
+            - '.:/home/node/app'
+        networks:
+            - webilio-vue
+        command: tail -f /dev/null
+networks:
+    webilio-vue:
+        driver: bridge
