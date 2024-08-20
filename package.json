@@ -19,6 +19,7 @@
     "lodash-es": "^4.*",
     "maska": "^3.0.0",
     "moment": "^2.*",
+    "vite-plugin-singlefile": "^2.0.2",
     "vue": "^3.4.38",
     "vue-cookies": "^1.*",
     "vue-doxen": "^0.4.1",
