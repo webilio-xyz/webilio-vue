@@ -15,6 +15,7 @@
     "@heroicons/vue": "^2.1.*",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vuepic/vue-datepicker": "^9.*",
+    "flat": "^6.0.1",
     "laravel-vue-i18n": "^2.7",
     "lodash-es": "^4.*",
     "maska": "^3.0.0",

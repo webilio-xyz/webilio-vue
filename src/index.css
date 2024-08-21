@@ -6,6 +6,33 @@ body #app{
     width: 100vw;
     max-width: 100vw;
 }
+*[data-applied-style-tokens=sidebarLogo] {
+    @apply max-w-full;
+    @apply flex;
+    @apply justify-center;
+    @apply p-4;
+    @apply border-b;
+    @apply mb-6;
+}
+*[data-applied-style-tokens=sidebarSectionTitle] {
+    @apply hover:bg-gray-100;
+    @apply py-1.5;
+    @apply border-gray-400;
+    @apply border-b-2;
+    @apply px-4;
+    @apply font-semibold;
+}
+*[data-applied-style-tokens=sidebarSection] {
+    @apply flex;
+    @apply flex-col;
+}
+*[data-applied-style-tokens=sidebarSection] [data-applied-style-tokens=sidebarButton] {
+    @apply ml-3
+}
+
+*[data-applied-style-tokens=sidebarLogo] img {
+    @apply max-w-52;
+}
 *[data-applied-style-tokens=componentDemoHr] {
     @apply m-2;
     @apply border-none;
@@ -56,6 +83,7 @@ body #app{
     @apply py-1.5;
     @apply border-b;
     @apply px-4;
+    @apply text-left;
 }
 *[data-applied-style-tokens="emitLogClearButton"] {
     @apply border;

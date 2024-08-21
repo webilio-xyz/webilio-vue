@@ -7,7 +7,7 @@
     />
     <VueDoxen
         v-model="selectedDemo"
-        :demos="demos"
+        :demos="doxenFormattedDemos"
         class="p-6 flex-grow max-w-full"
     />
 
@@ -20,13 +20,15 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+import {computed, onBeforeMount, onMounted, ref, watch} from 'vue';
+import { VueDoxen } from 'vue-doxen';
 // OPTIONAL: CSS file for minor layout/affordance improvements
 import 'vue-doxen/vue-doxen.css';
 import "./index.css"
 
 import Components from "./Components/index.js";
+import DoxenSidebar from "./Doxen/DoxenSidebar.vue";
+import {flatten} from "flat";
 
 
 defineOptions({
@@ -37,7 +39,22 @@ const selectedDemo = ref('ComponentA');
 
 const demos = computed(() => {
   return {
-    ...Components.Inputs
+    'Inputs' : Components.Inputs,
+    'checkbox': Components.Inputs.Checkbox,
   };
+});
+
+onBeforeMount(() => {
+  if (window.location.hash) {
+    selectedDemo.value = window.location.hash.slice(1);
+  }
+});
+
+watch(selectedDemo, () => {
+  window.history.replaceState(null, '', '#' + selectedDemo.value);
+});
+
+const doxenFormattedDemos = computed(() => {
+  return flatten(demos.value, { maxDepth: 2 });
 });
 </script>
