@@ -22,11 +22,10 @@
 <script setup>
 import {computed, onBeforeMount, onMounted, ref, watch} from 'vue';
 import { VueDoxen } from 'vue-doxen';
-// OPTIONAL: CSS file for minor layout/affordance improvements
 import 'vue-doxen/vue-doxen.css';
 import "./index.css"
 
-import Components from "./Components/index.js";
+import Components from "./Demo/index.js";
 import DoxenSidebar from "./Doxen/DoxenSidebar.vue";
 import {flatten} from "flat";
 
@@ -40,7 +39,6 @@ const selectedDemo = ref('ComponentA');
 const demos = computed(() => {
   return {
     'Inputs' : Components.Inputs,
-    'checkbox': Components.Inputs.Checkbox,
   };
 });
 

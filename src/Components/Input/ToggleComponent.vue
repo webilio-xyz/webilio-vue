@@ -8,10 +8,6 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
-    value: {
-        type: String,
-        default: null,
-    },
     size: {
         type: Number,
         default: 10,

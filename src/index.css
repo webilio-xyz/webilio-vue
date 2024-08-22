@@ -41,9 +41,8 @@ body #app{
     @apply max-w-full;
 }
 *[data-applied-style-tokens=propsPlaygroundForm] {
-    @apply grid;
-    @apply grid-cols-none;
-    @apply grid-cols-6;
+    @apply flex;
+    @apply flex-wrap;
     @apply gap-4;
     @apply max-w-full;
     @apply p-2;
@@ -121,4 +120,9 @@ body #app{
 *[data-applied-style-tokens="emitsDocumentationLi"] *[data-applied-style-tokens="emitsDocumentationLi"]
 {
     @apply border-none;
+}
+
+*[data-applied-style-tokens="formFieldLabel"]
+{
+    @apply capitalize;
 }
