@@ -16,7 +16,8 @@ body #app{
 }
 *[data-applied-style-tokens=sidebarSectionTitle] {
     @apply hover:bg-gray-100;
-    @apply py-1.5;
+    @apply pb-1.5;
+    @apply mt-6;
     @apply border-gray-400;
     @apply border-b-2;
     @apply px-4;

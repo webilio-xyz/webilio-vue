@@ -1,9 +1,10 @@
 import Inputs from "./Input";
+import Tables from "./Table/index.js";
 
-export  {
-    Inputs
+
+export const Components = {
+    Inputs,
+    Tables
 }
 
-export default {
-    Inputs
-}
+export default Components;

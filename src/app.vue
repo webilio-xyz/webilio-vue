@@ -39,6 +39,7 @@ const selectedDemo = ref('ComponentA');
 const demos = computed(() => {
   return {
     'Inputs' : Components.Inputs,
+    'Tables' : Components.Tables,
   };
 });
 
