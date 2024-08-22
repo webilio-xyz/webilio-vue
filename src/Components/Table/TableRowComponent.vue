@@ -16,15 +16,11 @@ const props = defineProps({
 
 <template>
     <tr class="border-0 border-b">
-        <slot
+        <TableCell
             v-for="column in columns.columns"
-            name="TableCell"
-        >
-            <TableCell
-                :column="column"
-                :data="data"
-            />
-        </slot>
+            :column="column"
+            :data="data"
+        />
     </tr>
 </template>
 

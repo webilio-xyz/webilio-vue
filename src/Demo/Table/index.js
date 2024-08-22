@@ -1,16 +1,16 @@
-import InertiaTableComponent from "../../Components/Table/InertiaTableComponent.vue";
-import TableComponent from "../../Components/Table/index.js";
-import TableRowComponent from "../../Components/Table/TableRowComponent.vue";
-import TableHeaderComponent from "../../Components/Table/TableHeaderComponent.vue";
-import TableCellComponent from "../../Components/Table/TableCellComponent.vue";
-import TablePaginationComponent from "../../Components/Table/TablePaginationComponent.vue";
+import InertiaTableComponentDemo from "./InertiaTableComponentDemo.js";
+import TableComponentDemo from "./TableComponentDemo.js";
+import TableHeaderComponentDemo from "./TableHeaderComponentDemo.js";
+import TableCellComponentDemo from "./TableCellComponentDemo.js";
+import TableRowComponentDemo from "./TableRowComponentDemo.js";
+import TablePaginationComponentDemo from "./TablePaginationComponentDemo.js";
 export const Tables = {
-    InertiaTableComponent,
-    TableComponent,
-    TableCellComponent,
-    TableRowComponent,
-    TableHeaderComponent,
-    TablePaginationComponent
+    'InertiaTableComponent': InertiaTableComponentDemo,
+    'TableComponent': TableComponentDemo,
+    'TableCellComponent': TableCellComponentDemo,
+    'TableRowComponent': TableRowComponentDemo,
+    'TableHeaderComponent': TableHeaderComponentDemo,
+    'TablePaginationComponent': TablePaginationComponentDemo
 };
 
 export default Tables;

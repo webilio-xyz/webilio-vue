@@ -1,7 +1,8 @@
 <script setup>
-import TableHeader from "./TableHeaderComponent.vue";
-import TableRow from "./TableRowComponent.vue";
 import Columns from "../../Models/Columns.ts";
+import TableRowComponent from "./TableRowComponent.vue";
+import TableHeaderComponent from "./TableHeaderComponent.vue";
+import {computed, useSlots} from "vue";
 
 const props = defineProps({
     columns: {
@@ -16,21 +17,21 @@ const props = defineProps({
         type: Boolean,
         default: false
     }
-})
+});
+
 </script>
 
 <template>
     <table class="overflow-x-auto table w-full relative">
-        <TableHeader :columns="columns" />
+        <TableHeaderComponent :columns="columns" />
         <template v-if="data?.length && !isLoading">
-            <slot name="TableRow">
-                <TableRow
-                    v-for="(datum) in data"
-                    :key="datum.id"
-                    :columns="columns"
-                    :data="datum"
-                />
-            </slot>
+          <template v-for="datum in data">
+              <TableRowComponent
+                  :columns="columns"
+                  :data="datum"
+              />
+          </template>
+
         </template>
         <template v-else-if="isLoading">
             <div>

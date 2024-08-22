@@ -15,7 +15,7 @@ const renderedColumns = computed(() => {
 </script>
 
 <template>
-    <thead class="sticky top-20 border-b-2 h-20 bg-gray-100 z-10">
+    <thead class="sticky border-b-2 h-20 bg-gray-100 z-10">
         <tr class="shadow-md">
             <th
                 v-for="column in renderedColumns"
