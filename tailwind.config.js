@@ -46,5 +46,11 @@ export default {
         "hover",
       ],
     },
+    {
+      pattern: /(border|bg|text)-(.*)/,
+      variants: [
+        "hover",
+      ],
+    },
   ],
 }
