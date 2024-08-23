@@ -39,4 +39,12 @@ export default {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(border|bg|text)-(.*)-(\d{1}0{1,2})/,
+      variants: [
+        "hover",
+      ],
+    },
+  ],
 }

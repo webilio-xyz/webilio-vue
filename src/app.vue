@@ -42,6 +42,7 @@ const demos = computed(() => {
     'Tables' : Components.Tables,
     'Layouts': Components.Layouts,
     'Modals': Components.Modals,
+    'Components': Components.Components
   };
 });
 
