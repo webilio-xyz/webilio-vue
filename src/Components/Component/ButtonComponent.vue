@@ -1,6 +1,6 @@
 <script setup>
 
-import {computed} from "vue";
+import {computed, useSlots} from "vue";
 import tailwindConfig from "../../../tailwind.config.js";
 import resolveConfig from "tailwindcss/resolveConfig.js";
 import {get} from "lodash-es";
@@ -75,6 +75,7 @@ function colorIsDark(hexColor) {
   const b = parseInt(color.substring(4, 6), 16); // hexToB
   return (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186);
 }
+
 
 </script>
 
