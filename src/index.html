@@ -12,8 +12,9 @@
     import { createApp } from 'vue'
     import MyComponent from './app.vue'
     import {i18nVue} from "laravel-vue-i18n";
-
+    import router from "./router";
     createApp(MyComponent)
+        .use(router)
         .use(i18nVue, {
             resolve: async lang => {
                 const langs = import.meta.glob('../../lang/*.json');

@@ -2,6 +2,8 @@
 
 import {isArray} from "lodash-es";
 import logo from "../Assets/Logo_webilio.png";
+import {RouterLink} from "vue-router";
+import router from "../router/index.js";
 const props = defineProps({
   demos: {
     type: Array,
@@ -13,8 +15,6 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue']);
-
 const isComponent = function(comp) {
   if (!comp) {
     return false;
@@ -22,9 +22,10 @@ const isComponent = function(comp) {
   return typeof comp.__name !== "undefined";
 };
 
-const updateValue = function(value) {
-  emit('update:modelValue', value);
+const isActive = function(key) {
+  return router.currentRoute.value.name === `components.${key}`;
 }
+
 </script>
 
 <template>
@@ -38,16 +39,31 @@ const updateValue = function(value) {
             <div data-applied-style-tokens="sidebarSectionTitle" data-style-tokens="sidebarSectionTitle">
               {{ index }}
             </div>
-            <button v-for="(subDemo, subIndex) in demo" @click="updateValue(index + '.' +subIndex)" data-applied-style-tokens="sidebarButton" data-style-tokens="sidebarButton">
+            <RouterLink
+                v-for="(subDemo, subIndex) in demo"
+                :to="{
+                  name: `components.${index}.${subIndex}`,
+                }"
+
+                :key="'sidebar-link-' + subIndex"
+                data-style-tokens="sidebarButton"
+                :data-applied-style-tokens="isActive(`${index}.${subIndex}`) ? 'sidebarButtonSelected sidebarButton' : 'sidebarButton'"
+            >
               {{ subIndex }}
-            </button>
+            </RouterLink>
           </div>
 
           <hr />
         </template>
-        <button v-else @click="updateValue(index)" data-applied-style-tokens="sidebarButton" data-style-tokens="sidebarButton">
+        <RouterLink
+            v-else data-applied-style-tokens="sidebarButton" data-style-tokens="sidebarButton"
+            :to="{
+                  name: `components.${index}`,
+                }"
+            :key="'sidebar-link-' + index"
+        >
           {{ index }}
-        </button>
+        </RouterLink>
       </template>
     </div>
 </template>

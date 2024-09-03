@@ -1,15 +1,13 @@
 <template>
   <div class="flex flex-row max-w-full">
-    <DoxenSidebar
-        v-model="selectedDemo"
-        :demos="demos"
-        class="border max-h-screen overflow-y-auto min-h-screen flex-none"
-    />
-    <VueDoxen
-        v-model="selectedDemo"
-        :demos="doxenFormattedDemos"
-        class="p-6 flex-grow max-w-full"
-    />
+    <aside>
+      <nav>
+        <DoxenSidebar :demos="demos" />
+      </nav>
+    </aside>
+    <main>
+      <RouterView />
+    </main>
 
     <link
         href="https://unpkg.com/highlightjs/styles/ir-black.css"
@@ -20,21 +18,17 @@
 </template>
 
 <script setup>
-import {computed, onBeforeMount, onMounted, ref, watch} from 'vue';
-import { VueDoxen } from 'vue-doxen';
+import {computed} from 'vue';
 import 'vue-doxen/vue-doxen.css';
 import "./index.css"
 
 import Components from "./Demo/index.js";
 import DoxenSidebar from "./Doxen/DoxenSidebar.vue";
-import {flatten} from "flat";
 
 
 defineOptions({
   name: 'DocumentationPage'
 });
-
-const selectedDemo = ref('ComponentA');
 
 const demos = computed(() => {
   return {
@@ -46,17 +40,4 @@ const demos = computed(() => {
   };
 });
 
-onBeforeMount(() => {
-  if (window.location.hash) {
-    selectedDemo.value = window.location.hash.slice(1);
-  }
-});
-
-watch(selectedDemo, () => {
-  window.history.replaceState(null, '', '#' + selectedDemo.value);
-});
-
-const doxenFormattedDemos = computed(() => {
-  return flatten(demos.value, { maxDepth: 2 });
-});
 </script>
