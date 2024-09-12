@@ -6,7 +6,7 @@ const show = ref(false);
 export default {
     component: ConfirmModalComponent,
     description: "Modal with confirm button",
-    importStatement: "import { ConfirmModalComponent } from from 'webilio-vue/Modal';",
+    importStatement: "import { ConfirmModalComponent } from from '@webilio-xyz/webilio-vue/Modal';",
     propsToDemo: {
         'show': {
             props: {

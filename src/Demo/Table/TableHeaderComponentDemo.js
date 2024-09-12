@@ -7,7 +7,7 @@ import TableHeaderComponent from "../../Components/Table/TableHeaderComponent.vu
 export default {
     component: TableHeaderComponent,
     description: "Table header from columns",
-    importStatement: "import { TableHeaderComponent } from 'webilio-vue/Table';",
+    importStatement: "import { TableHeaderComponent } from '@webilio-xyz/webilio-vue/Table';",
     propsToDemo: {
         'columns': {
             props: {

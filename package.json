@@ -1,5 +1,5 @@
 {
-  "name": "webilio-vue",
+  "name": "@webilio-xyz/webilio-vue",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -7,6 +7,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "private": false,
   "homepage": "https://webilio-xyz.github.io/webilio-vue/",
   "author": "",
   "license": "ISC",
@@ -40,5 +41,15 @@
     "vite": "^5.4.1",
     "vite-plugin-singlefile": "^2.0.2",
     "vue-doxen": "^0.4.1"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webilio-xyz/webilio-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webilio-xyz/webilio-vue/issues"
   }
 }

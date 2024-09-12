@@ -5,7 +5,7 @@ const show = ref(false);
 export default {
     component: ModalComponent,
     description: "Generic modal component",
-    importStatement: "import { ModalComponent } from from 'webilio-vue/Modal';",
+    importStatement: "import { ModalComponent } from from '@webilio-xyz/webilio-vue/Modal';",
     propsToDemo: {
         'show': {
             props: {

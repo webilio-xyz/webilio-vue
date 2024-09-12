@@ -3,7 +3,7 @@ import {SelectComponent} from "../../Components/Input/index.js";
 export default {
     component: SelectComponent,
     description: "Select with filtering and multiple options",
-    importStatement: "import { SelectComponent } from 'webilio-vue/Input';",
+    importStatement: "import { SelectComponent } from '@webilio-xyz/webilio-vue/Input';",
     propsToDemo: {
         'options': {
             props: {

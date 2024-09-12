@@ -3,7 +3,7 @@ import {TextInputComponent} from "../../Components/Input/index.js";
 export default {
     component: TextInputComponent,
     description: "HTML input with maska support",
-    importStatement: "import { TextInputComponent } from 'webilio-vue/Input';",
+    importStatement: "import { TextInputComponent } from '@webilio-xyz/webilio-vue/Input';",
     propsToDemo: {
         'modelValue': {
             props: {

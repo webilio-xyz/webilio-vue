@@ -4,7 +4,7 @@ import TableCellComponent from "../../Components/Table/TableCellComponent.vue";
 export default {
     component: TableCellComponent,
     description: "Table cell from column",
-    importStatement: "import { TableCellComponent } from 'webilio-vue/Table';",
+    importStatement: "import { TableCellComponent } from '@webilio-xyz/webilio-vue/Table';",
     propsToDemo: {
         'column': {
             props: {

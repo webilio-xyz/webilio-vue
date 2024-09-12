@@ -6,7 +6,7 @@ import TableComponent from "../../Components/Table/TableComponent.vue";
 export default {
     component: TableComponent,
     description: "Table",
-    importStatement: "import { TableComponent } from 'webilio-vue/Table';",
+    importStatement: "import { TableComponent } from '@webilio-xyz/webilio-vue/Table';",
     propsToDemo: {
         'columns': {
             props: {
