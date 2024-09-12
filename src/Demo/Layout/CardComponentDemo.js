@@ -3,7 +3,7 @@ import CardComponent from "../../Components/Layout/CardComponent.vue";
 export default {
     component: CardComponent,
     description: "Card",
-    importStatement: "import { CardComponent } from 'Webilio-Vue/src/Components';",
+    importStatement: "import { CardComponent } from 'webilio-vue/Layout';",
     slotsToDemo: {
         'default': {
             props: {

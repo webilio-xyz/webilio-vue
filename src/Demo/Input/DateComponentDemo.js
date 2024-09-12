@@ -4,7 +4,7 @@ import DoxenDate from "../../Doxen/DoxenDate.vue";
 export default {
     component: DateComponent,
     description: "Date picker",
-    importStatement: "import { DateComponent } from 'Webilio-Vue/src/Components/Input';",
+    importStatement: "import { DateComponent } from 'webilio-vue/Input';",
     propsToDemo: {
         'modelValue': {
             props: {

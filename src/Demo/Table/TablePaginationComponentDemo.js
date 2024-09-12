@@ -6,7 +6,7 @@ import TablePaginationComponent from "../../Components/Table/TablePaginationComp
 export default {
     component: TablePaginationComponent,
     description: "Table pagination",
-    importStatement: "import { TablePaginationComponent } from 'Webilio-Vue/src/Components/Table';",
+    importStatement: "import { TablePaginationComponent } from 'webilio-vue/Table';",
     propsToDemo: {
         'lastPage': {
             props: {

@@ -76,7 +76,8 @@ const maska = computed(() => {
         <InputComponent
             :id="formGroupUniqueId"
             :name="name"
-            :model-value="modelValue"
+            :type="type"
+            :model-value="modelValue ?? null"
             :disabled="disabled"
             :multiple="multiple"
             :options="options"

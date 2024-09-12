@@ -6,7 +6,7 @@ import TableRowComponent from "../../Components/Table/TableRowComponent.vue";
 export default {
     component: TableRowComponent,
     description: "Table row",
-    importStatement: "import { TableRowComponent } from 'Webilio-Vue/src/Components/Table';",
+    importStatement: "import { TableRowComponent } from 'webilio-vue/Table';",
     propsToDemo: {
         'columns': {
             props: {

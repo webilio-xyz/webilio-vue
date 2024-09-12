@@ -5,7 +5,7 @@ import ColumnDefinition from "../../Models/ColumnDefinition.js";
 export default {
     component: InertiaTableComponent,
     description: "Table with Inertia adapter",
-    importStatement: "import { InertiaTableComponent } from 'Webilio-Vue/src/Components/Table';",
+    importStatement: "import { InertiaTableComponent } from 'webilio-vue/Table';",
     propsToDemo: {
         'columns': {
             props: {

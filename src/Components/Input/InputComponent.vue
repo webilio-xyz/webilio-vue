@@ -6,6 +6,8 @@ import {computed, onMounted, ref} from "vue";
 import Date from "./DateComponent.vue";
 import TextInput from "./TextInputComponent.vue";
 import {uniqueId} from "lodash-es";
+import Select from "./SelectComponent.vue";
+import Textarea from "./TextareaComponent.vue";
 
 const props = defineProps({
   modelValue: String,
