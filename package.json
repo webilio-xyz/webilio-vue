@@ -7,6 +7,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "homepage": "https://webilio-xyz.github.io/webilio-vue/",
   "author": "",
   "license": "ISC",
   "description": "Webilio Vue Components Library",
