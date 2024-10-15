@@ -1,9 +1,12 @@
 import ModalComponent from "./ModalComponent.vue";
 import ConfirmModalComponent from "./ConfirmModalComponent.vue";
 
-export const Modals = {
+export {
     ModalComponent,
     ConfirmModalComponent
 };
 
-export default Modals;
+export default {
+    ModalComponent,
+    ConfirmModalComponent
+};

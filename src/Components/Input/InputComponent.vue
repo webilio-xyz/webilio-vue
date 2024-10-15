@@ -41,6 +41,10 @@ const props = defineProps({
   multiple: {
     type: Boolean,
     default: false
+  },
+  searchable: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -94,6 +98,7 @@ const maska = computed(() => {
       :options="options"
       :disabled="disabled"
       :multiple="multiple"
+      :searchable="searchable"
       @update:model-value="emit('update:modelValue', $event)"
   />
   <Textarea

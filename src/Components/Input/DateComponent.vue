@@ -3,14 +3,11 @@ import {computed, onMounted, ref} from 'vue';
 import {trans, isLoaded, getActiveLanguage} from "laravel-vue-i18n";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+import TextInputComponent from "./TextInputComponent.vue";
 
 const localizedFormat = computed(() => {
-  if (isLangLoaded.value) {
-    let format = trans('date.format').toString();
-    if (format === 'date.format') {
-      format = 'yyyy-MM-dd';
-    }
-    return format;
+  if(isLangLoaded.value) {
+    return trans('date.format').toString();
   }
   return null;
 });
@@ -32,14 +29,8 @@ const locale = computed(() => {
 
 const props = defineProps({
   modelValue: String,
-  'min': {
-    type: String,
-    default: null
-  },
-  max: {
-    type: String,
-    default: null
-  },
+  min: String,
+  max: String,
   clearable: {
     type: Boolean,
     default: true
@@ -47,25 +38,18 @@ const props = defineProps({
   range: {
     type: Boolean,
     default: false
-  },
-  disabled: {
-    type: Boolean,
-    default: false
   }
 });
 
 const emits = defineEmits(['update:modelValue']);
 
-const onChange = (e) => {
-  emits('update:modelValue', e);
-};
 </script>
 
 <template>
   <VueDatePicker
       v-if="localizedFormat"
+      class="print:hidden"
       :model-value="modelValue"
-      :disabled="disabled"
       :min-date="min"
       :max-date="max"
       :enable-time-picker="false"
@@ -78,6 +62,16 @@ const onChange = (e) => {
       :time-picker="false"
       :auto-apply="true"
       :partial-flow="true"
-      @update:model-value="onChange($event)"
+      @update:model-value="emits('update:modelValue', $event)"
+  />
+  <TextInputComponent
+      class="hidden print:block w-full"
+      :model-value="modelValue"
   />
 </template>
+
+<style scoped>
+:deep(.dp__input_wrap > .dp__input) {
+  @apply border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm disabled:bg-gray-200 py-2;
+}
+</style>

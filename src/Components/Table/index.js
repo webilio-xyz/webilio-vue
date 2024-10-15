@@ -4,7 +4,7 @@ import TableCellComponent from "./TableCellComponent.vue";
 import TableRowComponent from "./TableRowComponent.vue";
 import TableHeaderComponent from "./TableHeaderComponent.vue";
 import TablePaginationComponent from "./TablePaginationComponent.vue";
-export const Tables = {
+export {
     InertiaTableComponent,
     TableComponent,
     TableCellComponent,
@@ -13,4 +13,11 @@ export const Tables = {
     TablePaginationComponent
 };
 
-export default Tables;
+export default {
+    InertiaTableComponent,
+    TableComponent,
+    TableCellComponent,
+    TableRowComponent,
+    TableHeaderComponent,
+    TablePaginationComponent
+};

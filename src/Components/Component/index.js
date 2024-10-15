@@ -1,9 +1,12 @@
 import AlertComponent from "./AlertComponent.vue";
 import ButtonComponent from "./ButtonComponent.vue";
 
-export const Components = {
+export {
     AlertComponent,
     ButtonComponent
 };
 
-export default Components;
+export default {
+    AlertComponent,
+    ButtonComponent
+};

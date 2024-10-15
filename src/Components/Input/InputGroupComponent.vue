@@ -42,6 +42,10 @@ const props = defineProps({
     multiple: {
         type: Boolean,
         default: false
+    },
+    searchable: {
+      type: Boolean,
+      default: true
     }
 });
 
@@ -85,6 +89,7 @@ const maska = computed(() => {
             :min="min"
             :range="range"
             :mask="maska"
+            :searchable="searchable"
             :placeholder="placeholder"
             @update:model-value="emit('update:modelValue', $event)"
         />

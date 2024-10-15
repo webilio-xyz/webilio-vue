@@ -2,10 +2,14 @@ import CardComponent from "./CardComponent.vue";
 import ContainerComponent from "./ContainerComponent.vue";
 import CardTitleComponent from "./CardTitleComponent.vue";
 
-export const Layouts = {
+export {
     CardComponent,
     ContainerComponent,
     CardTitleComponent
 };
 
-export default Layouts;
+export default {
+    CardComponent,
+    ContainerComponent,
+    CardTitleComponent
+};
