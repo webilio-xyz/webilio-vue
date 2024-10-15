@@ -1,6 +1,6 @@
 {
   "name": "@webilio-xyz/webilio-vue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -15,7 +15,8 @@
   "main": "./src/components/index.js",
   "exports": {
     ".": "./src/Components/index.js",
-    "./*": "./src/Components/*/index.js"
+    "./*": "./src/Components/*/index.js",
+    "./Models": "./src/Models/index.js"
   },
   "dependencies": {
     "@dzangolab/vue-country-flag-icon": "^0.3.0",
