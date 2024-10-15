@@ -17,7 +17,7 @@ const props = defineProps({
 
 
 const isFormatted = computed(() => {
-    return props.column.formatter && typeof props.column.formatter === 'function';
+    return !!props.column.formatter && typeof props.column.formatter === 'function';
 });
 
 const isRendered = computed(() => {
@@ -30,13 +30,13 @@ const computedValue = computed(() => {
     } else if (isRendered.value) {
         return props.column.render(props.data, props.column);
     } else {
-        return get(props.data, props.column.key);
+        return get(props.data, props.column.key, null);
     }
 });
 
 const computedClass = computed(() => {
     return [
-        `w-${props.column.size}`,
+        `w-${props.column.size ?? 'auto'}`,
         props.column.className
     ]
 });

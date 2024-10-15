@@ -5,7 +5,7 @@ import { usePage } from '@inertiajs/vue3';
 import {debounce, get} from "lodash-es";
 import Columns from "../../Models/Columns";
 import TablePaginationComponent from "./TablePaginationComponent.vue";
-
+import TableComponent from "./TableComponent.vue";
 
 const page = usePage();
 
@@ -70,7 +70,7 @@ watch(currentPage, debouncedGetData)
 </script>
 
 <template>
-    <Table
+    <TableComponent
         class="mt-6"
         :is-loading="dataLoading"
         :data="computedResults"
