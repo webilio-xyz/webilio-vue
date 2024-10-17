@@ -10,18 +10,26 @@ import TableComponent from "./TableComponent.vue";
 const page = usePage();
 
 const props = defineProps({
-    columns: {
-        type: Columns,
-        required: true
-    },
-    additionalFilters: {
-        type: Object,
-        default: () => ({})
-    },
-    inertiaKey: {
-        type: String,
-        required: true
-    }
+  columns: {
+    type: Columns,
+    required: true
+  },
+  additionalFilters: {
+    type: Object,
+    default: () => ({})
+  },
+  inertiaKey: {
+    type: String,
+    required: true
+  },
+  tableClass: {
+    type: String,
+    default: ''
+  },
+  footerClass: {
+    type: String,
+    default: ''
+  }
 })
 
 const filters = ref({});
@@ -29,7 +37,7 @@ const filters = ref({});
 const data = ref(get(page.props, props.inertiaKey, {}));
 
 const computedResults = computed(() => {
-    return get(data.value, 'data', []);
+  return get(data.value, 'data', []);
 })
 
 const dataLoading = ref(false);
@@ -37,29 +45,29 @@ const dataLoading = ref(false);
 const currentPage = ref(get(data, 'current_page', 1));
 
 defineExpose({
-    getData
+  getData
 });
 
 function getData() {
-    dataLoading.value = true;
-    router.get(
-        window.location.pathname,
-        {
-            filters: {...props.additionalFilters, ...filters.value},
-            page: currentPage.value
+  dataLoading.value = true;
+  router.get(
+      window.location.pathname,
+      {
+        filters: {...props.additionalFilters, ...filters.value},
+        page: currentPage.value
+      },
+      {
+        preserveState: true,
+        preserveScroll: true,
+        only: [props.inertiaKey],
+        onSuccess: (page) => {
+          data.value = get(page.props, props.inertiaKey);
         },
-        {
-            preserveState: true,
-            preserveScroll: true,
-            only: [props.inertiaKey],
-            onSuccess: (page) => {
-                data.value = get(page.props, props.inertiaKey);
-            },
-            onFinish: () => {
-                dataLoading.value = false;
-            }
+        onFinish: () => {
+          dataLoading.value = false;
         }
-    );
+      }
+  );
 }
 
 const debouncedGetData = debounce(getData, 500);
@@ -70,20 +78,20 @@ watch(currentPage, debouncedGetData)
 </script>
 
 <template>
-    <TableComponent
-        class="mt-6"
-        :is-loading="dataLoading"
-        :data="computedResults"
-        :columns="columns"
-    />
-    <div class="flex mt-4 pt-4">
-        <div class="flex-grow flex">
-            <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
-        </div>
-
-      <TablePaginationComponent
-          :last-page="data.last_page"
-          v-model="currentPage"
-      />
+  <TableComponent
+      :is-loading="dataLoading"
+      :data="computedResults"
+      :columns="columns"
+      :class="tableClass"
+  />
+  <div class="flex items-center" :class="footerClass">
+    <div class="flex-grow flex">
+      <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
     </div>
+
+    <TablePaginationComponent
+        :last-page="data.last_page"
+        v-model="currentPage"
+    />
+  </div>
 </template>
