@@ -21,6 +21,14 @@ const props = defineProps({
   inertiaKey: {
     type: String,
     required: true
+  },
+  tableClass: {
+    type: String,
+    default: ''
+  },
+  footerClass: {
+    type: String,
+    default: ''
   }
 })
 
@@ -71,12 +79,12 @@ watch(currentPage, debouncedGetData)
 
 <template>
   <TableComponent
-      class="mt-6"
       :is-loading="dataLoading"
       :data="computedResults"
       :columns="columns"
+      :class="tableClass"
   />
-  <div class="flex mt-4 pt-4">
+  <div class="flex items-center" :class="footerClass">
     <div class="flex-grow flex">
       <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
     </div>
