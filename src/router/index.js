@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { VueDoxen } from 'vue-doxen';
-
-import {computed} from "vue";
 import Components from "../Demo/index.js";
 import {flatten} from "flat";
 import {forEach} from "lodash-es";
+import VueDoxen from "../Doxen/VueDoxen.vue";
 
 
 const demos =  {
@@ -21,18 +19,11 @@ const routes = [
     // ...other routes,
     {
         // Create the path for the URL
-        path: '/',
+        path: '/:pathMatch(.*)*',
         // Give it an optional name
         name: 'home',
         // You could point to VueDoxen directly or a wrapper component
         component: VueDoxen,
-        props: (route) => {
-            let hash = route.hash.slice(1) ?? 'Inputs.CheckboxComponent';
-            return {
-                demos: doxenFormattedDemos,
-                modelValue: hash
-            };
-        },
     },
 ];
 

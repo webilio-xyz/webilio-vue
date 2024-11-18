@@ -39,18 +39,16 @@ const isActive = function(key) {
             <div data-applied-style-tokens="sidebarSectionTitle" data-style-tokens="sidebarSectionTitle">
               {{ index }}
             </div>
-            <RouterLink
+            <a
                 v-for="(subDemo, subIndex) in demo"
-                :to="{
-                  hash: `#${index}.${subIndex}`,
-                }"
+                :href="`#${index}.${subIndex}`"
 
                 :key="'sidebar-link-' + subIndex"
                 data-style-tokens="sidebarButton"
                 :data-applied-style-tokens="isActive(`${index}.${subIndex}`) ? 'sidebarButtonSelected sidebarButton' : 'sidebarButton'"
             >
               {{ subIndex }}
-            </RouterLink>
+            </a>
           </div>
 
           <hr />
