@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-row max-w-full">
-    <aside>
+  <div class="flex flex-row max-w-full space-x-6">
+    <aside class="border-r border-gray-500">
       <nav>
         <DoxenSidebar :demos="demos" />
       </nav>
     </aside>
-    <main>
+    <main class="flex-grow p-6">
       <RouterView />
     </main>
 

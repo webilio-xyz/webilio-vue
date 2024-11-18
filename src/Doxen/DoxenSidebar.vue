@@ -42,7 +42,7 @@ const isActive = function(key) {
             <RouterLink
                 v-for="(subDemo, subIndex) in demo"
                 :to="{
-                  name: `components.${index}.${subIndex}`,
+                  hash: `#${index}.${subIndex}`,
                 }"
 
                 :key="'sidebar-link-' + subIndex"

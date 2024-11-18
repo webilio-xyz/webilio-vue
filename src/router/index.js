@@ -26,30 +26,15 @@ const routes = [
         name: 'home',
         // You could point to VueDoxen directly or a wrapper component
         component: VueDoxen,
-        redirect: to => {
-            // the function receives the target route as the argument
-            // we return a redirect path/location here.
-            return { path: '/components/' + 'Inputs.TextInputComponent' };
+        props: (route) => {
+            let hash = route.hash.slice(1) ?? 'Inputs.CheckboxComponent';
+            return {
+                demos: doxenFormattedDemos,
+                modelValue: hash
+            };
         },
     },
 ];
-
-forEach(demos, (demoCategoryComponents, demoCategoryName) => {
-    forEach(demoCategoryComponents, (component, componentName) => {
-        routes.push({
-            path: `/components/${demoCategoryName}/${componentName}`,
-            name: `components.${demoCategoryName}.${componentName}`,
-            component: VueDoxen,
-            props: (route) => ({
-                demos: doxenFormattedDemos,
-                modelValue: `${demoCategoryName}.${componentName}`,
-            }),
-            meta: {
-                title: `${componentName}`
-            }
-        })
-    })
-})
 
 // Create the router
 const router = createRouter({
@@ -59,7 +44,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title ? `${to.meta.title} - Webilio-Vue` : 'Webilio-Vue';
+    let hash = to.hash.slice(1) ?? 'Inputs.CheckboxComponent';
+    hash = hash.split('.').pop();
+    document.title = hash ? `${hash} - Webilio-Vue` : 'Webilio-Vue';
     next();
 })
 

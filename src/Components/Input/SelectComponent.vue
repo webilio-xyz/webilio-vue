@@ -38,6 +38,18 @@ const props = defineProps({
   deselectable: {
     type: Boolean,
     default: true
+  },
+  groupSelect: {
+    type: Boolean,
+    default: false
+  },
+  groupValues: {
+    type: String,
+    default: 'children'
+  },
+  groupLabel: {
+    type: String,
+    default: 'label'
   }
 });
 
@@ -102,6 +114,9 @@ const remove = (option) => {
       label="label"
       :searchable="searchable"
       :show-labels="false"
+      :group-select="groupSelect"
+      :group-values="groupValues"
+      :group-label="groupLabel"
       @remove="remove"
   >
     <template #maxElements>
