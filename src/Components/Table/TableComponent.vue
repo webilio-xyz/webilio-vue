@@ -28,10 +28,11 @@ const props = defineProps({
   <table class="overflow-x-auto table w-full relative">
     <TableHeaderComponent :columns="columns" :class="headerClass"/>
     <template v-if="data?.length && !isLoading">
-      <template v-for="datum in data">
+      <template v-for="(datum, i) in data" :key="i">
         <TableRowComponent
             :columns="columns"
             :data="datum"
+            :class="datum?.trClassName"
         />
       </template>
 

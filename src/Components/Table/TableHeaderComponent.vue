@@ -15,12 +15,14 @@ const renderedColumns = computed(() => {
 </script>
 
 <template>
-  <thead class="sticky border-b-2 h-20 bg-gray-100 z-10">
-  <tr class="shadow-md">
+  <thead class="sticky border-b-2 h-20 bg-gray-100 z-10 text-gray-700 text-xs font-medium uppercase shadow-md">
+  <tr>
     <th
         v-for="column in renderedColumns"
         :key="column.key"
-        class="px-6 py-3 text-start text-xs font-medium text-gray-700 uppercase"
+        scope="col"
+        class="px-6 py-3 text-start"
+        :class="column.thClassName"
     >
       {{ column.name }}
     </th>

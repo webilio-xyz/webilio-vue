@@ -10,7 +10,10 @@ export default class ColumnDefinition {
     order = 0;
     size = 'auto'
     className = '';
-    constructor({name, key, formatter, type, sortable, filterable, visible, order, render, size, className}) {
+    thClassName = '';
+    tdClassName = '';
+    trClassName = '';
+    constructor({name, key, formatter, type, sortable, filterable, visible, order, render, size, className, thClassName, tdClassName, trClassName} = {}) {
         if (name) {
             this.name = name;
         }
@@ -53,6 +56,14 @@ export default class ColumnDefinition {
 
         if (typeof className === "string") {
             this.className = className;
+        }
+
+        if (typeof thClassName === "string") {
+            this.thClassName = thClassName;
+        }
+
+        if (typeof tdClassName === "string") {
+            this.tdClassName = tdClassName;
         }
     }
 }

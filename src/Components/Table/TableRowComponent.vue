@@ -17,7 +17,8 @@ const props = defineProps({
 <template>
     <tr class="border-0 border-b">
         <TableCell
-            v-for="column in columns.columns"
+            v-for="(column) in columns.columns"
+            :key="column.key"
             :column="column"
             :data="data"
         />
