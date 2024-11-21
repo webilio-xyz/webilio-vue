@@ -45,7 +45,7 @@ const props = defineProps({
   },
   groupValues: {
     type: String,
-    default: 'children'
+    default: null
   },
   groupLabel: {
     type: String,
