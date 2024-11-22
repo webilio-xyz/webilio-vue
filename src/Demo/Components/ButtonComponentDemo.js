@@ -5,9 +5,9 @@ export default {
     description: "Button ",
     importStatement: "import { ButtonComponent } from '@webilio-xyz/webilio-vue/Components';",
     propsToDemo: {
-        'textColor': {
+        'class': {
             props: {
-                'modelValue': null,
+                'modelValue': "bg-blue-500 hover:bg-blue-700 text-white",
             }
         },
     },

@@ -1,8 +1,5 @@
 <script setup>
-import {onMounted, onUnmounted, ref, watch} from 'vue';
-import {XMarkIcon} from "@heroicons/vue/24/solid/index.js";
 import ModalComponent from "./ModalComponent.vue";
-import CardComponent from "../Layout/CardComponent.vue";
 import CardTitleComponent from "../Layout/CardTitleComponent.vue";
 import ButtonComponent from "../Component/ButtonComponent.vue";
 
@@ -58,8 +55,8 @@ const confirm = () => {
         <p>{{ $t(confirmMessage) }}</p>
       </div>
       <div class="flex justify-end border-t space-x-3 pt-4">
-        <ButtonComponent @click="close">{{ $t(cancelText) }}</ButtonComponent>
-        <ButtonComponent color="red" @click="confirm">{{ $t(confirmText) }}</ButtonComponent>
+        <ButtonComponent class="bg-primary-500 text-white hover:bg-primary-600" @click="close">{{ $t(cancelText) }}</ButtonComponent>
+        <ButtonComponent class="bg-red-500 text-white hover:bg-red-600" @click="confirm">{{ $t(confirmText) }}</ButtonComponent>
       </div>
     </template>
   </ModalComponent>
