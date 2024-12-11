@@ -29,6 +29,10 @@ const props = defineProps({
   footerClass: {
     type: String,
     default: ''
+  },
+  headerClass: {
+    type: String,
+    default: ''
   }
 })
 
@@ -83,15 +87,24 @@ watch(currentPage, debouncedGetData)
       :data="computedResults"
       :columns="columns"
       :class="tableClass"
-  />
-  <div class="flex items-center" :class="footerClass">
-    <div class="flex-grow flex">
-      <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
-    </div>
+      :headerClass="headerClass"
+  >
+    <template #footer>
+      <slot name="footer">
+        <!-- Default content when slot is not used -->
+        <div class="flex items-center" :class="footerClass">
+          <div class="flex-grow flex">
+            <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
+          </div>
 
-    <TablePaginationComponent
-        :last-page="data.last_page"
-        v-model="currentPage"
-    />
-  </div>
+          <TablePaginationComponent
+              :last-page="data.last_page"
+              v-model="currentPage"
+              :class="footerClass"
+          />
+        </div>
+      </slot>
+    </template>
+  </TableComponent>
+
 </template>
