@@ -90,20 +90,25 @@ watch(currentPage, debouncedGetData)
       :headerClass="headerClass"
   >
     <template #footer>
-      <slot name="footer">
-        <!-- Default content when slot is not used -->
-        <div class="flex items-center" :class="footerClass">
-          <div class="flex-grow flex">
-            <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
-          </div>
+      <tr class="w-full">
+        <td colspan="100%">
+          <slot name="footer">
+            <!-- Default content when slot is not used -->
+            <div class="flex items-center" :class="footerClass">
+              <div class="flex-grow flex">
+                <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
+              </div>
 
-          <TablePaginationComponent
-              :last-page="data.last_page"
-              v-model="currentPage"
-              :class="footerClass"
-          />
-        </div>
-      </slot>
+              <TablePaginationComponent
+                  :last-page="data.last_page"
+                  v-model="currentPage"
+                  :class="footerClass"
+              />
+            </div>
+          </slot>
+        </td>
+      </tr>
+
     </template>
   </TableComponent>
 
