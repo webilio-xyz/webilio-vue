@@ -7,6 +7,10 @@ const props = defineProps({
     type: Columns,
     default: []
   },
+  trClass: {
+    type: String,
+    default: ''
+  }
 })
 
 const renderedColumns = computed(() => {
@@ -16,7 +20,7 @@ const renderedColumns = computed(() => {
 
 <template>
   <thead class="sticky border-b-2 h-20 bg-gray-100 z-10 text-gray-700 text-xs font-medium uppercase shadow-md">
-  <tr>
+  <tr :class="trClass">
     <th
         v-for="column in renderedColumns"
         :key="column.key"

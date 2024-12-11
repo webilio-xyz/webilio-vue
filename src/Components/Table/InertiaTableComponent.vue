@@ -33,6 +33,10 @@ const props = defineProps({
   headerClass: {
     type: String,
     default: ''
+  },
+  trHeadClass: {
+    type: String,
+    default: ''
   }
 })
 
@@ -88,6 +92,7 @@ watch(currentPage, debouncedGetData)
       :columns="columns"
       :class="tableClass"
       :headerClass="headerClass"
+      :trHeadClass="trHeadClass"
   >
     <template #footer>
       <tr class="w-full">
