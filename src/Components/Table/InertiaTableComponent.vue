@@ -37,6 +37,10 @@ const props = defineProps({
   trHeadClass: {
     type: String,
     default: ''
+  },
+  paginationClass: {
+    type: String,
+    default: ''
   }
 })
 
@@ -47,6 +51,16 @@ const data = ref(get(page.props, props.inertiaKey, {}));
 const computedResults = computed(() => {
   return get(data.value, 'data', []);
 })
+
+const paginationProps = computed(() => ({
+  currentPage: currentPage.value,
+  footerClass: props.footerClass,
+  data: data.value,
+  paginationClass: props.paginationClass,
+  onPageChange: (newPage) => {
+    currentPage.value = newPage;
+  }
+}));
 
 const dataLoading = ref(false);
 
@@ -93,28 +107,21 @@ watch(currentPage, debouncedGetData)
       :class="tableClass"
       :headerClass="headerClass"
       :trHeadClass="trHeadClass"
-  >
-    <template #footer>
-      <tr class="w-full">
-        <td colspan="100%">
-          <slot name="footer">
-            <!-- Default content when slot is not used -->
-            <div class="flex items-center" :class="footerClass">
-              <div class="flex-grow flex">
-                <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
-              </div>
+  />
 
-              <TablePaginationComponent
-                  :last-page="data.last_page"
-                  v-model="currentPage"
-                  :class="footerClass"
-              />
-            </div>
-          </slot>
-        </td>
-      </tr>
+  <slot name="pagination" v-bind="paginationProps">
 
-    </template>
-  </TableComponent>
+    <div class="flex items-center" :class="footerClass">
+      <div class="flex-grow flex">
+        <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
+      </div>
+
+      <TablePaginationComponent
+          :last-page="data.last_page"
+          v-model="currentPage"
+          :class="footerClass"
+      />
+    </div>
+  </slot>
 
 </template>

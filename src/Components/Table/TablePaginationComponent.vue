@@ -31,7 +31,7 @@ const changePage = (page) => {
         :disabled="currentPage === 1"
         @click="changePage(currentPage - 1)"
     >
-      <ChevronLeftIcon class="w-5 h-5" />
+      <ChevronLeftIcon class="w-5 h-5"/>
     </Button>
     <template v-if="currentPage === 1">
       <Button disabled>
@@ -128,7 +128,7 @@ const changePage = (page) => {
         :disabled="currentPage === lastPage"
         @click="changePage(currentPage + 1)"
     >
-      <ChevronRightIcon class="w-5 h-5" />
+      <ChevronRightIcon class="w-5 h-5"/>
     </Button>
   </div>
 </template>

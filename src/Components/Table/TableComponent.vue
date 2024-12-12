@@ -85,7 +85,10 @@ const props = defineProps({
       </tr>
     </template>
     <tfoot class="w-full">
-      <slot name="footer" />
+    <tr class="w-full">
+      <td colspan="100%">
+      </td>
+    </tr>
     </tfoot>
   </table>
 </template>
