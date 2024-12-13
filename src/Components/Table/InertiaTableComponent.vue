@@ -38,10 +38,14 @@ const props = defineProps({
     type: String,
     default: ''
   },
-    paginationClass: {
-        type: String,
-        default: ''
-    }
+  paginationClass: {
+      type: String,
+      default: ''
+  },
+  currentPage: {
+    type: Number,
+    default: 1
+  }
 })
 
 const filters = ref({});
@@ -52,21 +56,11 @@ const computedResults = computed(() => {
   return get(data.value, 'data', []);
 })
 
-const paginationProps = computed(() => {
-    return {
-        currentPage: currentPage.value,
-        footerClass: props.footerClass,
-        data: data.value,
-        paginationClass: props.paginationClass,
-        onPageChange: (newPage) => {
-            currentPage.value = newPage;
-        }
-    };
-});
-
 const dataLoading = ref(false);
 
-const currentPage = ref(get(data, 'current_page', 1));
+const tableCurrentPage = ref(get(data, 'current_page', props.currentPage));
+
+
 
 defineExpose({
   getData
@@ -78,7 +72,7 @@ function getData() {
       window.location.pathname,
       {
         filters: {...props.additionalFilters, ...filters.value},
-        page: currentPage.value
+        page: tableCurrentPage.value
       },
       {
         preserveState: true,
@@ -97,8 +91,10 @@ function getData() {
 const debouncedGetData = debounce(getData, 500);
 
 watch(props, debouncedGetData, {deep: true});
-watch(currentPage, debouncedGetData)
-
+watch(tableCurrentPage, debouncedGetData)
+watch(() => props.currentPage, (newPage) => {
+    tableCurrentPage.value = newPage
+})
 </script>
 
 <template>
@@ -112,8 +108,7 @@ watch(currentPage, debouncedGetData)
       :trHeadClass="trHeadClass"
   />
 
-    <slot name="pagination" v-bind="paginationProps">
-
+    <slot name="pagination">
         <div class="flex items-center" :class="footerClass">
             <div class="flex-grow flex">
                 <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
@@ -121,7 +116,7 @@ watch(currentPage, debouncedGetData)
 
             <TablePaginationComponent
                 :last-page="data.last_page"
-                v-model="currentPage"
+                v-model="tableCurrentPage"
                 :class="footerClass"
             />
         </div>
