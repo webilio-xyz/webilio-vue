@@ -12,9 +12,27 @@ const props = defineProps({
     type: Number,
     default: 1
   },
+   buttonClass: {
+    type: String,
+    default: ''
+  },
+    buttonLrClass: {
+        type: String,
+        default: ''
+    },
+    buttonPageClass: {
+        type: String,
+        default: ''
+    },
 });
 
 const currentPage = computed(() => props.modelValue);
+const lrClassButtons = computed(() => {
+    return `${props.buttonClass} ${props.buttonLrClass}`;
+})
+const pageClassButtons = computed(() => {
+    return `${props.buttonClass} ${props.buttonPageClass}`;
+})
 
 const emits = defineEmits(['update:modelValue']);
 
@@ -28,17 +46,19 @@ const changePage = (page) => {
 <template>
   <div class="flex space-x-1.5">
     <Button
+        :class="lrClassButtons"
         :disabled="currentPage === 1"
         @click="changePage(currentPage - 1)"
     >
-      <ChevronLeftIcon class="w-5 h-5"/>
+      <ChevronLeftIcon class="w-5 h-5" />
     </Button>
     <template v-if="currentPage === 1">
-      <Button disabled>
+      <Button :class="pageClassButtons" disabled>
         {{ currentPage }}
       </Button>
       <template v-if="lastPage < 5">
         <Button
+            :class="pageClassButtons"
             v-for="pageId in range(currentPage + 1, lastPage + 1)"
             :key="pageId"
             @click="changePage(pageId)"
@@ -48,6 +68,7 @@ const changePage = (page) => {
       </template>
       <template v-else>
         <Button
+            :class="pageClassButtons"
             v-for="pageId in range(currentPage + 1, currentPage + 3)"
             :key="pageId"
             @click="changePage(pageId)"
@@ -55,7 +76,7 @@ const changePage = (page) => {
           {{ pageId }}
         </Button>
         <span class="py-2">...</span>
-        <Button @click="changePage(lastPage)">
+        <Button :class="pageClassButtons" @click="changePage(lastPage)">
           {{ lastPage }}
         </Button>
       </template>
@@ -63,6 +84,7 @@ const changePage = (page) => {
     <template v-else-if="currentPage === lastPage">
       <template v-if="lastPage < 5">
         <Button
+            :class="pageClassButtons"
             v-for="pageId in range(1, lastPage)"
             :key="pageId"
             @click="changePage(pageId)"
@@ -71,11 +93,12 @@ const changePage = (page) => {
         </Button>
       </template>
       <template v-else>
-        <Button @click="changePage(1)">
+        <Button :class="pageClassButtons" @click="changePage(1)">
           1
         </Button>
         <span class="py-2">...</span>
         <Button
+            :class="pageClassButtons"
             v-for="pageId in range(currentPage - 2, currentPage)"
             :key="pageId"
             @click="changePage(pageId)"
@@ -83,13 +106,13 @@ const changePage = (page) => {
           {{ pageId }}
         </Button>
       </template>
-      <Button disabled>
+      <Button :class="pageClassButtons" disabled>
         {{ currentPage }}
       </Button>
     </template>
     <template v-else>
       <template v-if="currentPage > 2">
-        <Button @click="changePage(1)">
+        <Button :class="pageClassButtons" @click="changePage(1)">
           1
         </Button>
         <span
@@ -98,16 +121,18 @@ const changePage = (page) => {
         >...</span>
       </template>
       <Button
+          :class="pageClassButtons"
           v-for="pageId in range(currentPage - 1, currentPage)"
           :key="pageId"
           @click="changePage(pageId)"
       >
         {{ pageId }}
       </Button>
-      <Button disabled>
+      <Button :class="pageClassButtons" disabled>
         {{ currentPage }}
       </Button>
       <Button
+          :class="pageClassButtons"
           v-for="pageId in range(currentPage + 1, currentPage + 2)"
           :key="pageId"
           @click="changePage(pageId)"
@@ -119,16 +144,17 @@ const changePage = (page) => {
                         v-if="currentPage < (lastPage - 2)"
                         class="py-2"
                     >...</span>
-        <Button @click="changePage(lastPage)">
+        <Button :class="pageClassButtons" @click="changePage(lastPage)">
           {{ lastPage }}
         </Button>
       </template>
     </template>
     <Button
+        :class="lrClassButtons"
         :disabled="currentPage === lastPage"
         @click="changePage(currentPage + 1)"
     >
-      <ChevronRightIcon class="w-5 h-5"/>
+      <ChevronRightIcon class="w-5 h-5" />
     </Button>
   </div>
 </template>

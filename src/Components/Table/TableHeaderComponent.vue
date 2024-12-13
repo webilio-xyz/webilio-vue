@@ -10,6 +10,10 @@ const props = defineProps({
   trClass: {
     type: String,
     default: ''
+  },
+  headerClass: {
+    type: String,
+    default: 'sticky border-b-2 h-20 bg-gray-100 z-10 text-gray-700 text-xs font-medium uppercase shadow-md'
   }
 })
 
@@ -19,7 +23,7 @@ const renderedColumns = computed(() => {
 </script>
 
 <template>
-  <thead class="sticky border-b-2 h-20 bg-gray-100 z-10 text-gray-700 text-xs font-medium uppercase shadow-md">
+  <thead :class="headerClass">
   <tr :class="trClass">
     <th
         v-for="column in renderedColumns"

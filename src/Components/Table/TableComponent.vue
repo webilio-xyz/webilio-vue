@@ -30,7 +30,7 @@ const props = defineProps({
 
 <template>
   <table class="overflow-x-auto table w-full relative">
-    <TableHeaderComponent :columns="columns" :class="headerClass" :trClass="trHeadClass"/>
+    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass"/>
     <template v-if="data?.length && !isLoading">
       <template v-for="(datum, i) in data" :key="i">
         <TableRowComponent
@@ -84,12 +84,15 @@ const props = defineProps({
         </td>
       </tr>
     </template>
-    <tfoot class="w-full">
-    <tr class="w-full">
-      <td colspan="100%">
-      </td>
-    </tr>
-    </tfoot>
+
+      <tfoot>
+          <tr>
+              <td colspan="100%">
+                  <div id="tPagination"></div>
+              </td>
+          </tr>
+      </tfoot>
+
   </table>
 </template>
 
