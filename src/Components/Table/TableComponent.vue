@@ -19,6 +19,10 @@ const props = defineProps({
   headerClass: {
     type: String,
     default: ''
+  },
+  trHeadClass: {
+    type: String,
+    default: ''
   }
 });
 
@@ -26,7 +30,7 @@ const props = defineProps({
 
 <template>
   <table class="overflow-x-auto table w-full relative">
-    <TableHeaderComponent :columns="columns" :class="headerClass"/>
+    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass"/>
     <template v-if="data?.length && !isLoading">
       <template v-for="(datum, i) in data" :key="i">
         <TableRowComponent

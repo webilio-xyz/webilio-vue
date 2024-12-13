@@ -29,6 +29,22 @@ const props = defineProps({
   footerClass: {
     type: String,
     default: ''
+  },
+  headerClass: {
+    type: String,
+    default: ''
+  },
+  trHeadClass: {
+    type: String,
+    default: ''
+  },
+  paginationClass: {
+      type: String,
+      default: ''
+  },
+  currentPage: {
+    type: Number,
+    default: 1
   }
 })
 
@@ -42,7 +58,9 @@ const computedResults = computed(() => {
 
 const dataLoading = ref(false);
 
-const currentPage = ref(get(data, 'current_page', 1));
+const tableCurrentPage = ref(get(data, 'current_page', props.currentPage));
+
+
 
 defineExpose({
   getData
@@ -54,7 +72,7 @@ function getData() {
       window.location.pathname,
       {
         filters: {...props.additionalFilters, ...filters.value},
-        page: currentPage.value
+        page: tableCurrentPage.value
       },
       {
         preserveState: true,
@@ -73,25 +91,35 @@ function getData() {
 const debouncedGetData = debounce(getData, 500);
 
 watch(props, debouncedGetData, {deep: true});
-watch(currentPage, debouncedGetData)
-
+watch(tableCurrentPage, debouncedGetData)
+watch(() => props.currentPage, (newPage) => {
+    tableCurrentPage.value = newPage
+})
 </script>
 
 <template>
   <TableComponent
+      ref="props.table"
       :is-loading="dataLoading"
       :data="computedResults"
       :columns="columns"
       :class="tableClass"
+      :headerClass="headerClass"
+      :trHeadClass="trHeadClass"
   />
-  <div class="flex items-center" :class="footerClass">
-    <div class="flex-grow flex">
-      <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
-    </div>
 
-    <TablePaginationComponent
-        :last-page="data.last_page"
-        v-model="currentPage"
-    />
-  </div>
+    <slot name="pagination">
+        <div class="flex items-center" :class="footerClass">
+            <div class="flex-grow flex">
+                <span class="py-2">{{ $t('table.nbResults', {total: get(data, 'total', 0)}) }}</span>
+            </div>
+
+            <TablePaginationComponent
+                :last-page="data.last_page"
+                v-model="tableCurrentPage"
+                :class="footerClass"
+            />
+        </div>
+    </slot>
+
 </template>
