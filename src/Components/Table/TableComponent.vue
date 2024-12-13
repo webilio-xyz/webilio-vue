@@ -84,15 +84,6 @@ const props = defineProps({
         </td>
       </tr>
     </template>
-
-      <tfoot>
-          <tr>
-              <td colspan="100%">
-                  <div id="tPagination"></div>
-              </td>
-          </tr>
-      </tfoot>
-
   </table>
 </template>
 
