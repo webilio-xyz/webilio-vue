@@ -115,8 +115,14 @@ onUnmounted(() => {
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div class="flex flex-col space-y-2">
+                          <div>
                             <slot name="content" />
+                          </div>
+
+                          <div>
+                            <slot name="footer" />
+                          </div>
                         </div>
                     </template>
                 </div>
