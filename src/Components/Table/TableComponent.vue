@@ -26,11 +26,17 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(["sort"])
+
+const handleSort = ({ column, direction }) => {
+  emit("sort", { column: column, direction: direction });
+};
+
 </script>
 
 <template>
   <table class="overflow-x-auto table w-full relative">
-    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass"/>
+    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass" @sort="handleSort"/>
     <template v-if="data?.length && !isLoading">
       <template v-for="(datum, i) in data" :key="i">
         <TableRowComponent
