@@ -122,7 +122,7 @@ const footerPositionClass = computed(() => {
             >
                 <div
                     v-show="show"
-                    class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:mx-auto"
+                    class="mb-6 bg-white rounded-lg shadow-xl transform transition-all sm:mx-auto"
                     :class="props.width"
                 >
                     <template v-if="showSlot">
@@ -140,8 +140,8 @@ const footerPositionClass = computed(() => {
                         </div>
                       </div>
 
-                        <div class="flex flex-col space-y-2">
-                          <div class="p-6">
+                        <div class="flex flex-col flex-wrap space-y-2">
+                          <div class="p-6 w-full break-words">
                             <slot name="content" />
                           </div>
 
