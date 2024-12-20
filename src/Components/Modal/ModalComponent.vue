@@ -140,12 +140,12 @@ const footerPositionClass = computed(() => {
                         </div>
                       </div>
 
-                        <div class="flex flex-col flex-wrap space-y-2">
+                        <div class="flex flex-col flex-wrap">
                           <div class="p-6 w-full break-words">
                             <slot name="content" />
                           </div>
 
-                          <div v-if="hasFooter" class="border-t px-4 py-3 flex" :class="footerPositionClass">
+                          <div v-if="hasFooter" class="border-t flex px-4 py-3" :class="footerPositionClass">
                             <slot name="footer" />
                           </div>
                         </div>
