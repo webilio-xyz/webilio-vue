@@ -19,6 +19,10 @@ const props = defineProps({
         type: String,
         default: 'w-1/2',
     },
+    hasFooter: {
+        type: Boolean,
+        default: false,
+    },
     footerPosition: {
       type: String,
       default: 'end',
@@ -141,7 +145,7 @@ const footerPositionClass = computed(() => {
                             <slot name="content" />
                           </div>
 
-                          <div class="border-t px-4 py-3 flex" :class="footerPositionClass">
+                          <div v-if="hasFooter" class="border-t px-4 py-3 flex" :class="footerPositionClass">
                             <slot name="footer" />
                           </div>
                         </div>
