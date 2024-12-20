@@ -2,6 +2,7 @@ import ModalComponent from "../../Components/Modal/ModalComponent.vue";
 import {ref} from "vue";
 
 const show = ref(false);
+const hasFooter = ref(false);
 export default {
     component: ModalComponent,
     description: "Generic modal component",
@@ -10,6 +11,11 @@ export default {
         'show': {
             props: {
                 'modelValue': show,
+            }
+        },
+        'hasFooter': {
+            props: {
+                'modelValue': hasFooter,
             }
         },
     },
