@@ -13,7 +13,7 @@ export default {
             props: {
                 'modelValue': new Columns([
                     new ColumnDefinition({name: 'Id', key: 'id'}),
-                    new ColumnDefinition({name: 'Name', key: 'name'}),
+                    new ColumnDefinition({name: 'Name', key: 'name', sortable: true}),
                 ]),
             }
         },

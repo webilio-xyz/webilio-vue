@@ -95,6 +95,12 @@ watch(tableCurrentPage, debouncedGetData)
 watch(() => props.currentPage, (newPage) => {
     tableCurrentPage.value = newPage
 })
+
+const emit = defineEmits(["sort"])
+
+const handleSort = ({ column, direction }) => {
+  emit("sort", { column: column, direction: direction });
+};
 </script>
 
 <template>
@@ -106,6 +112,7 @@ watch(() => props.currentPage, (newPage) => {
       :class="tableClass"
       :headerClass="headerClass"
       :trHeadClass="trHeadClass"
+      @sort="handleSort"
   />
 
     <slot name="pagination">
