@@ -45,6 +45,10 @@ const props = defineProps({
   currentPage: {
     type: Number,
     default: 1
+  },
+  sorting: {
+    type: Object,
+    default: () => ({})
   }
 })
 
@@ -98,8 +102,18 @@ watch(() => props.currentPage, (newPage) => {
 
 const emit = defineEmits(["sort"])
 
-const handleSort = ({ column, direction }) => {
-  emit("sort", { column: column, direction: direction });
+const handleSort = (column) => {
+  switch (get(props.sorting, column.name, false)) {
+    case 'asc':
+      emit("sort", column,'desc' );
+      break;
+    case 'desc':
+      emit("sort", column, false );
+      break;
+    default:
+      emit("sort", column,'asc' );
+      break;
+  }
 };
 </script>
 

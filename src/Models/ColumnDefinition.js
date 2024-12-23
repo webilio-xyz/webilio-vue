@@ -5,7 +5,6 @@ export default class ColumnDefinition {
     render = null;
     type = 'text';
     sortable = false;
-    sortDirection = '';
     filterable = false;
     visible = true;
     order = 0;
@@ -14,7 +13,7 @@ export default class ColumnDefinition {
     thClassName = '';
     tdClassName = '';
     trClassName = '';
-    constructor({name, key, formatter, type, sortable, sortDirection, filterable, visible, order, render, size, className, thClassName, tdClassName, trClassName} = {}) {
+    constructor({name, key, formatter, type, sortable, filterable, visible, order, render, size, className, thClassName, tdClassName, trClassName} = {}) {
         if (name) {
             this.name = name;
         }
@@ -33,10 +32,6 @@ export default class ColumnDefinition {
 
         if (typeof sortable === 'boolean') {
             this.sortable = sortable;
-        }
-
-        if (typeof sortDirection === 'string') {
-            this.sortDirection = sortDirection;
         }
 
         if (typeof filterable === 'boolean') {
