@@ -104,7 +104,7 @@ const remove = (option) => {
   <Multiselect
       id="value"
       v-model="proxyValue"
-      class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+      class="wv-input wv-select-input border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
       :options="computedOptions"
       :placeholder="placeholder ?? $t('select.placeholder')"
       :multiple="multiple"

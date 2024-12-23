@@ -48,7 +48,7 @@ const emits = defineEmits(['update:modelValue']);
 <template>
   <VueDatePicker
       v-if="localizedFormat"
-      class="print:hidden"
+      class="print:hidden wv-input wv-date-input"
       :model-value="modelValue"
       :min-date="min"
       :max-date="max"
@@ -65,7 +65,7 @@ const emits = defineEmits(['update:modelValue']);
       @update:model-value="emits('update:modelValue', $event)"
   />
   <TextInputComponent
-      class="hidden print:block w-full"
+      class="hidden print:block w-full wv-input wv-date-input"
       :model-value="modelValue"
   />
 </template>

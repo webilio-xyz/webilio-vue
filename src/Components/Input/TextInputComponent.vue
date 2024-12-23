@@ -28,7 +28,7 @@ defineExpose({ focus: () => input.value.focus() });
     <input
         ref="input"
         v-maska="mask"
-        class="border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-gray-200 px-1"
+        class="wv-input wv-text-input focus:ring-inputfocus-500 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-gray-200 px-1"
         :value="modelValue"
         :min="min"
         :max="max"
