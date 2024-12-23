@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref, watch } from 'vue';
+import {computed, onMounted, onUnmounted, ref, watch} from 'vue';
 import {XMarkIcon} from "@heroicons/vue/24/solid/index.js";
 
 const props = defineProps({
@@ -18,6 +18,15 @@ const props = defineProps({
     width: {
         type: String,
         default: 'w-1/2',
+    },
+    hasFooter: {
+        type: Boolean,
+        default: false,
+    },
+    footerPosition: {
+      type: String,
+      default: 'end',
+      validator: (value) => ['left', 'center', 'end'].includes(value)
     }
 });
 
@@ -62,6 +71,19 @@ onUnmounted(() => {
     document.body.style.overflow = null;
 });
 
+const footerPositionClass = computed(() => {
+  switch (props.footerPosition) {
+    case 'left':
+      return 'justify-start';
+    case 'center':
+      return 'justify-center';
+    case 'end':
+      return 'justify-end';
+    default:
+      return 'justify-end';
+  }
+});
+
 </script>
 
 <template>
@@ -100,27 +122,30 @@ onUnmounted(() => {
             >
                 <div
                     v-show="show"
-                    class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:mx-auto p-6"
+                    class="mb-6 bg-white rounded-lg shadow-xl transform transition-all sm:mx-auto"
                     :class="props.width"
                 >
                     <template v-if="showSlot">
-                        <div class="flex border-b mb-6 pb-3">
-                            <div class="flex-grow text-xl font-bold">
-                                <slot name="title" />
-                            </div>
-                            <div v-if="closeable">
-                                <XMarkIcon
-                                    class="w-5 h-5 cursor-pointer"
-                                    @click="close"
-                                />
-                            </div>
+                      <div class="border-b">
+                        <div class="flex items-center px-4 py-3">
+                          <div class="flex-grow text-xl font-bold">
+                            <slot name="title" />
+                          </div>
+                          <div v-if="closeable">
+                            <XMarkIcon
+                                class="w-5 h-5 cursor-pointer"
+                                @click="close"
+                            />
+                          </div>
                         </div>
-                        <div class="flex flex-col space-y-2">
-                          <div>
+                      </div>
+
+                        <div class="flex flex-col flex-wrap">
+                          <div class="p-6 w-full break-words">
                             <slot name="content" />
                           </div>
 
-                          <div>
+                          <div v-if="hasFooter" class="border-t flex px-4 py-3" :class="footerPositionClass">
                             <slot name="footer" />
                           </div>
                         </div>

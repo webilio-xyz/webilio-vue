@@ -45,6 +45,10 @@ const props = defineProps({
   currentPage: {
     type: Number,
     default: 1
+  },
+  sorting: {
+    type: Object,
+    default: () => ({})
   }
 })
 
@@ -95,6 +99,22 @@ watch(tableCurrentPage, debouncedGetData)
 watch(() => props.currentPage, (newPage) => {
     tableCurrentPage.value = newPage
 })
+
+const emit = defineEmits(["sort"])
+
+const handleSort = (column) => {
+  switch (get(props.sorting, column.name, false)) {
+    case 'asc':
+      emit("sort", column,'desc' );
+      break;
+    case 'desc':
+      emit("sort", column, false );
+      break;
+    default:
+      emit("sort", column,'asc' );
+      break;
+  }
+};
 </script>
 
 <template>
@@ -106,6 +126,7 @@ watch(() => props.currentPage, (newPage) => {
       :class="tableClass"
       :headerClass="headerClass"
       :trHeadClass="trHeadClass"
+      @sort="handleSort"
   />
 
     <slot name="pagination">
