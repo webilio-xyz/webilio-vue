@@ -2,7 +2,7 @@
 import {router} from "@inertiajs/vue3";
 import {computed, ref, watch} from "vue";
 import { usePage } from '@inertiajs/vue3';
-import {debounce, find, get} from "lodash-es";
+import {debounce, find, findIndex, get} from "lodash-es";
 import Columns from "../../Models/Columns";
 import TablePaginationComponent from "./TablePaginationComponent.vue";
 import TableComponent from "./TableComponent.vue";
@@ -64,7 +64,7 @@ const dataLoading = ref(false);
 
 const tableCurrentPage = ref(get(data, 'current_page', props.currentPage));
 
-
+const sorting = ref(props.sorting);
 
 defineExpose({
   getData
@@ -76,6 +76,9 @@ function getData() {
       window.location.pathname,
       {
         filters: {...props.additionalFilters, ...filters.value},
+        sort: [
+            ...sorting.value
+        ],
         page: tableCurrentPage.value
       },
       {
@@ -96,22 +99,50 @@ const debouncedGetData = debounce(getData, 500);
 
 watch(props, debouncedGetData, {deep: true});
 watch(tableCurrentPage, debouncedGetData)
+
 watch(() => props.currentPage, (newPage) => {
     tableCurrentPage.value = newPage
 })
 
-const emit = defineEmits(["addSort", "setSort"])
+watch(() => props.sorting, (newSorting) => {
+    sorting.value = newSorting
+})
+
+watch(sorting, () => {
+    debouncedGetData()
+}, {deep: true})
 
 const addSort = (column) => {
-    emit("addSort", column, getSortDirection(column));
+    let direction = getSortDirection(column);
+    let sortingIndex = findIndex(sorting.value, (value) => value.key === column.key);
+    if (direction) {
+        if (sortingIndex > -1) {
+            sorting.value[sortingIndex] = {
+                key: column.key,
+                'direction': direction
+            };
+        } else {
+            sorting.value.push({
+                key: column.key,
+                'direction': direction
+            });
+        }
+    } else {
+        delete sorting.value[sortingIndex];
+    }
 }
 const setSort = (column) => {
-    emit("setSort", column, getSortDirection(column));
+    sorting.value = [{
+        key: column.key,
+        'direction': getSortDirection(column)
+    }];
 }
 
+
 const getSortDirection = (column) => {
-    let sorting = find(props.sorting, (value) => value.key === column.key);
-    switch (sorting?.direction) {
+    let sortingItem = find(sorting.value, (value) => value.key === column.key);
+    console.log(sortingItem);
+    switch (sortingItem?.direction) {
         case 'asc':
             return 'desc';
         case 'desc':
