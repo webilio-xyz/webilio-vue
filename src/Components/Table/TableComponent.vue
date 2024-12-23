@@ -25,22 +25,18 @@ const props = defineProps({
     default: ''
   },
   sorting: {
-    type: Object,
-    default: () => {}
+    type: Array,
+    default: []
   }
 });
 
-const emit = defineEmits(["sort"])
-
-const handleSort = (column) => {
-  emit('sort', column)
-};
+const emit = defineEmits(["setSort", "addSort"])
 
 </script>
 
 <template>
   <table class="overflow-x-auto table w-full relative">
-    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass" :sorting="sorting" @sort="handleSort"/>
+    <TableHeaderComponent :columns="columns" :headerClass="headerClass" :trClass="trHeadClass" :sorting="sorting" @setSort="emit('setSort', $event)" @addSort="emit('addSort', $event)"/>
     <template v-if="data?.length && !isLoading">
       <template v-for="(datum, i) in data" :key="i">
         <TableRowComponent

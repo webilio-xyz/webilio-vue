@@ -2,7 +2,7 @@
 import {router} from "@inertiajs/vue3";
 import {computed, ref, watch} from "vue";
 import { usePage } from '@inertiajs/vue3';
-import {debounce, get} from "lodash-es";
+import {debounce, find, get} from "lodash-es";
 import Columns from "../../Models/Columns";
 import TablePaginationComponent from "./TablePaginationComponent.vue";
 import TableComponent from "./TableComponent.vue";
@@ -47,8 +47,8 @@ const props = defineProps({
     default: 1
   },
   sorting: {
-    type: Object,
-    default: () => ({})
+    type: Array,
+    default: []
   }
 })
 
@@ -100,21 +100,26 @@ watch(() => props.currentPage, (newPage) => {
     tableCurrentPage.value = newPage
 })
 
-const emit = defineEmits(["sort"])
+const emit = defineEmits(["addSort", "setSort"])
 
-const handleSort = (column) => {
-  switch (get(props.sorting, column.name, false)) {
-    case 'asc':
-      emit("sort", column,'desc' );
-      break;
-    case 'desc':
-      emit("sort", column, false );
-      break;
-    default:
-      emit("sort", column,'asc' );
-      break;
-  }
-};
+const addSort = (column) => {
+    emit("addSort", column, getSortDirection(column));
+}
+const setSort = (column) => {
+    emit("setSort", column, getSortDirection(column));
+}
+
+const getSortDirection = (column) => {
+    let sorting = find(props.sorting, (value) => value.key === column.key);
+    switch (sorting?.direction) {
+        case 'asc':
+            return 'desc';
+        case 'desc':
+            return false;
+        default:
+            return 'asc';
+    }
+}
 </script>
 
 <template>
@@ -127,7 +132,8 @@ const handleSort = (column) => {
       :headerClass="headerClass"
       :trHeadClass="trHeadClass"
       :sorting="sorting"
-      @sort="handleSort"
+      @setSort="setSort"
+      @addSort="addSort"
   />
 
     <slot name="pagination">
