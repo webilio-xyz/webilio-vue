@@ -1,8 +1,8 @@
 <script setup>
 import {router} from "@inertiajs/vue3";
-import {computed, ref, watch} from "vue";
+import {computed, ref, watch, toRaw} from "vue";
 import { usePage } from '@inertiajs/vue3';
-import {debounce, find, findIndex, get} from "lodash-es";
+import {debounce, findIndex, get, forEach} from "lodash-es";
 import Columns from "../../Models/Columns";
 import TablePaginationComponent from "./TablePaginationComponent.vue";
 import TableComponent from "./TableComponent.vue";
@@ -70,15 +70,23 @@ defineExpose({
   getData
 });
 
+const sortingForRequest = computed(() => {
+    let sortingForRequest = {};
+
+    forEach(sorting.value, (sort, index) => {
+        sortingForRequest[index] = {key: sort.key, direction: sort.direction};
+    })
+
+    return sortingForRequest;
+})
+
 function getData() {
   dataLoading.value = true;
   router.get(
       window.location.pathname,
       {
         filters: {...props.additionalFilters, ...filters.value},
-        sort: [
-            ...sorting.value
-        ],
+        sort: sortingForRequest.value,
         page: tableCurrentPage.value
       },
       {
@@ -94,6 +102,7 @@ function getData() {
       }
   );
 }
+
 
 const debouncedGetData = debounce(getData, 500);
 
@@ -140,9 +149,8 @@ const setSort = (column) => {
 
 
 const getSortDirection = (column) => {
-    let sortingItem = find(sorting.value, (value) => value.key === column.key);
-    console.log(sortingItem);
-    switch (sortingItem?.direction) {
+    let sortingIndex = findIndex(sorting.value, (value) => value.key === column.key);
+    switch (get(sorting.value, `${sortingIndex}.direction`, false)) {
         case 'asc':
             return 'desc';
         case 'desc':
