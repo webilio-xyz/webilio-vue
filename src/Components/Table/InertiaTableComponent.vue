@@ -126,6 +126,7 @@ const handleSort = (column) => {
       :class="tableClass"
       :headerClass="headerClass"
       :trHeadClass="trHeadClass"
+      :sorting="sorting"
       @sort="handleSort"
   />
 
