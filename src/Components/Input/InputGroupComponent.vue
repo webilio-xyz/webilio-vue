@@ -46,6 +46,10 @@ const props = defineProps({
     searchable: {
       type: Boolean,
       default: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -72,6 +76,7 @@ const maska = computed(() => {
         <LabelComponent
             :for="formGroupUniqueId"
             :value="label"
+            :required="required"
             class="w-full mb-2"
         >
           {{label}}
