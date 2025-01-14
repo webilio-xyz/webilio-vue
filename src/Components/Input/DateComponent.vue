@@ -27,7 +27,7 @@ const locale = computed(() => {
   return getActiveLanguage();
 })
 
-const props = defineProps({
+defineProps({
   modelValue: String,
   min: String,
   max: String,

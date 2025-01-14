@@ -1,13 +1,11 @@
 <script setup>
-
-import {isArray} from "lodash-es";
 import logo from "../Assets/Logo_webilio.png";
 import {RouterLink} from "vue-router";
 import router from "../router/index.js";
 const props = defineProps({
   demos: {
     type: Array,
-    default: []
+    default: () => []
   },
   modelValue: {
     type: String,
@@ -33,7 +31,7 @@ const isActive = function(key) {
       <div data-applied-style-tokens="sidebarLogo" data-style-tokens="sidebarLogo">
         <img :src="logo" />
       </div>
-      <template v-for="(demo, index) in props.demos">
+      <template v-for="(demo, index) in props.demos" :key="index">
         <template v-if="!isComponent(demo)">
           <div data-applied-style-tokens="sidebarSection" data-style-tokens="sidebarSection">
             <div data-applied-style-tokens="sidebarSectionTitle" data-style-tokens="sidebarSectionTitle">
@@ -42,7 +40,6 @@ const isActive = function(key) {
             <a
                 v-for="(subDemo, subIndex) in demo"
                 :href="`#${index}.${subIndex}`"
-
                 :key="'sidebar-link-' + subIndex"
                 data-style-tokens="sidebarButton"
                 :data-applied-style-tokens="isActive(`${index}.${subIndex}`) ? 'sidebarButtonSelected sidebarButton' : 'sidebarButton'"

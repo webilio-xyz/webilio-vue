@@ -94,7 +94,7 @@ const changePage = (page) => {
     <template v-else-if="currentPage === lastPage">
         <slot name="previous">
             <template v-if="lastPage < 5">
-                <ButtonComponent
+                <button
                     :class="pageClassButtons"
                     class="wv-pagination-button wv-pagination-previous"
                     v-for="pageId in range(1, lastPage)"
@@ -102,27 +102,28 @@ const changePage = (page) => {
                     @click="changePage(pageId)"
                 >
                     {{ pageId }}
-                </ButtonComponent>
+                </button>
             </template>
             <template v-else>
-                <ButtonComponent :class="pageClassButtons" class="wv-pagination-button wv-pagination-previous" @click="changePage(1)">
+                <button :class="pageClassButtons" class="wv-pagination-button wv-pagination-previous" @click="changePage(1)">
                     1
-                </ButtonComponent>
+                </button>
                 <span class="wv-pagination-dot py-2">...</span>
-                <ButtonComponent
+                <button
                     :class="pageClassButtons"
+                    class="wv-pagination-button wv-pagination-previous"
                     v-for="pageId in range(currentPage - 2, currentPage)"
                     :key="pageId"
                     @click="changePage(pageId)"
                 >
                     {{ pageId }}
-                </ButtonComponent>
+                </button>
             </template>
         </slot>
         <slot name="current">
-            <ButtonComponent :class="pageClassButtons" disabled>
+            <button :class="pageClassButtons" class="wv-pagination-button wv-pagination-current" disabled>
                 {{ currentPage }}
-            </ButtonComponent>
+            </button>
         </slot>
     </template>
     <template v-else>

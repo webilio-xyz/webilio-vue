@@ -1,6 +1,4 @@
 
-import Columns from "../../Models/Columns.ts";
-import ColumnDefinition from "../../Models/ColumnDefinition.js";
 import TablePaginationComponent from "../../Components/Table/TablePaginationComponent.vue";
 
 export default {

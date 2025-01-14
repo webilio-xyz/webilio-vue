@@ -3,7 +3,7 @@ import ModalComponent from "./ModalComponent.vue";
 import CardTitleComponent from "../Layout/CardTitleComponent.vue";
 import ButtonComponent from "../Component/ButtonComponent.vue";
 
-const props = defineProps({
+defineProps({
   show: {
     type: Boolean,
     default: false,

@@ -3,7 +3,7 @@ import Columns from "../../Models/Columns.ts";
 import TableRowComponent from "./TableRowComponent.vue";
 import TableHeaderComponent from "./TableHeaderComponent.vue";
 
-const props = defineProps({
+defineProps({
   columns: {
     type: Columns,
     default: () => new Columns()
@@ -26,7 +26,7 @@ const props = defineProps({
   },
   sorting: {
     type: Array,
-    default: []
+    default: () => []
   }
 });
 

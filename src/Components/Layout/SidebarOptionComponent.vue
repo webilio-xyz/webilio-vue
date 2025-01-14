@@ -1,6 +1,5 @@
 <script setup>
-
-const props = defineProps({
+defineProps({
   option: {
     type: Object,
     required: true

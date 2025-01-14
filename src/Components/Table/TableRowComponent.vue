@@ -2,7 +2,7 @@
 import Columns from "../../Models/Columns";
 import TableCell from "./TableCellComponent.vue";
 
-const props = defineProps({
+defineProps({
     columns: {
         type: Columns,
         default: () => new Columns()

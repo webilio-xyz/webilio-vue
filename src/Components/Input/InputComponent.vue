@@ -45,10 +45,14 @@ const props = defineProps({
   searchable: {
     type: Boolean,
     default: true
+  },
+  taggable: {
+    type: Boolean,
+    default: false
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'tag']);
 
 const formGroupUniqueId = ref(null);
 
@@ -99,7 +103,9 @@ const maska = computed(() => {
       :disabled="disabled"
       :multiple="multiple"
       :searchable="searchable"
+      :taggable="taggable"
       @update:model-value="emit('update:modelValue', $event)"
+      @tag="emit('tag', $event)"
   />
   <Textarea
       v-else-if="type === 'textarea'"

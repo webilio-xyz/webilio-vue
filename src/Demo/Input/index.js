@@ -1,13 +1,3 @@
-import {
-    ErrorComponent,
-    InputComponent,
-    InputGroupComponent,
-    LabelComponent,
-    SelectComponent,
-    TextareaComponent,
-    TextInputComponent,
-    ToggleComponent
-} from "../../Components/Input/index.js";
 import DateComponentDemo from "./DateComponentDemo.js";
 import CheckboxComponentDemo from "./CheckboxComponentDemo.js";
 import ErrorComponentDemo from "./ErrorComponentDemo.js";

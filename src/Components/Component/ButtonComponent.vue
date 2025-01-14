@@ -1,5 +1,4 @@
 <script setup>
-import {computed, useSlots} from "vue";
 </script>
 
 <template>

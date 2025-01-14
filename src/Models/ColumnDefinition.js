@@ -65,5 +65,9 @@ export default class ColumnDefinition {
         if (typeof tdClassName === "string") {
             this.tdClassName = tdClassName;
         }
+
+        if (typeof trClassName === "string") {
+            this.trClassName = trClassName;
+        }
     }
 }

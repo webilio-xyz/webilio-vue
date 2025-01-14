@@ -1,7 +1,6 @@
 
 import Columns from "../../Models/Columns.ts";
 import ColumnDefinition from "../../Models/ColumnDefinition.js";
-import TableComponent from "../../Components/Table/TableComponent.vue";
 import TableHeaderComponent from "../../Components/Table/TableHeaderComponent.vue";
 
 export default {

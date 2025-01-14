@@ -1,12 +1,12 @@
 <script setup>
 import {computed} from "vue";
 import Columns from "../../Models/Columns.ts";
-import {find, get} from "lodash-es";
+import {find} from "lodash-es";
 
 const props = defineProps({
   columns: {
     type: Columns,
-    default: []
+    default: () => []
   },
   trClass: {
     type: String,
@@ -18,7 +18,7 @@ const props = defineProps({
   },
   sorting: {
     type: Array,
-    default: []
+    default: () =>[]
   }
 })
 
@@ -44,7 +44,6 @@ const getColumnSortingDirection = (column) => {
         default:
             return false;
     }
-    return false;
 }
 
 const sort = (column, $event) => {

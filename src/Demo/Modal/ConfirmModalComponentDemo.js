@@ -1,4 +1,3 @@
-import ModalComponent from "../../Components/Modal/ModalComponent.vue";
 import {ref} from "vue";
 import ConfirmModalComponent from "../../Components/Modal/ConfirmModalComponent.vue";
 

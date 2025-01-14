@@ -3,7 +3,7 @@ import {computed} from 'vue';
 import Multiselect from 'vue-multiselect';
 import {map} from "lodash-es";
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'tag'])
 
 const props = defineProps({
   modelValue: {},
@@ -50,6 +50,10 @@ const props = defineProps({
   groupLabel: {
     type: String,
     default: 'label'
+  },
+  taggable: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -96,7 +100,10 @@ const remove = (option) => {
     });
     emit('update:modelValue', newValue);
   }
+}
 
+const addTag = (newTag) => {
+  emit('tag', newTag);
 }
 
 </script>
@@ -117,6 +124,8 @@ const remove = (option) => {
       :group-select="groupSelect"
       :group-values="groupValues"
       :group-label="groupLabel"
+      :taggable="taggable"
+      @tag="addTag"
       @remove="remove"
   >
     <template #maxElements>

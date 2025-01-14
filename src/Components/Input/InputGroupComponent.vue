@@ -50,12 +50,14 @@ const props = defineProps({
     required: {
         type: Boolean,
         default: false
+    },
+    taggable: {
+        type: Boolean,
+        default: false
     }
 });
 
-const emit = defineEmits(['update:modelValue']);
-
-const input = ref(null);
+const emit = defineEmits(['update:modelValue', 'tag']);
 
 const formGroupUniqueId = ref(null);
 
@@ -96,7 +98,9 @@ const maska = computed(() => {
             :mask="maska"
             :searchable="searchable"
             :placeholder="placeholder"
+            :taggable="taggable"
             @update:model-value="emit('update:modelValue', $event)"
+            @tag="emit('tag', $event)"
         />
 
         <ErrorComponent

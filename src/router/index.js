@@ -1,19 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Components from "../Demo/index.js";
-import {flatten} from "flat";
-import {forEach} from "lodash-es";
 import VueDoxen from "../Doxen/VueDoxen.vue";
-
-
-const demos =  {
-    'Inputs' : Components.Inputs,
-    'Tables' : Components.Tables,
-    'Layouts': Components.Layouts,
-    'Modals': Components.Modals,
-    'Components': Components.Components
-};
-
-const doxenFormattedDemos = flatten(demos, { maxDepth: 2 });
 
 const routes = [
     // ...other routes,

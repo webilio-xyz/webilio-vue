@@ -1,6 +1,6 @@
 <script setup>
 import {router} from "@inertiajs/vue3";
-import {computed, ref, watch, toRaw} from "vue";
+import {computed, ref, watch} from "vue";
 import { usePage } from '@inertiajs/vue3';
 import {debounce, findIndex, get, forEach} from "lodash-es";
 import Columns from "../../Models/Columns";
@@ -48,7 +48,7 @@ const props = defineProps({
   },
   sorting: {
     type: Array,
-    default: []
+    default: () =>[]
   }
 })
 
