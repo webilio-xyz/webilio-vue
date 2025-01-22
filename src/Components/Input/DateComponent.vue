@@ -38,10 +38,21 @@ defineProps({
   range: {
     type: Boolean,
     default: false
+  },
+  placeholder: {
+    type: String,
+    required: false
   }
 });
 
 const emits = defineEmits(['update:modelValue']);
+
+const fixUTC = (date) => {
+  if (!date) return null;
+  let utcDate = new Date(date);
+  utcDate.setMinutes(utcDate.getMinutes() + Math.abs(utcDate.getTimezoneOffset()));
+  return utcDate.toISOString().split('Z')[0];
+}
 
 </script>
 
@@ -49,9 +60,9 @@ const emits = defineEmits(['update:modelValue']);
   <VueDatePicker
       v-if="localizedFormat"
       class="print:hidden wv-input wv-date-input"
-      :model-value="modelValue"
-      :min-date="min"
-      :max-date="max"
+      :model-value="fixUTC(modelValue)"
+      :min-date="fixUTC(min)"
+      :max-date="fixUTC(max)"
       :enable-time-picker="false"
       :format="localizedFormat"
       :locale="locale"
@@ -62,6 +73,7 @@ const emits = defineEmits(['update:modelValue']);
       :time-picker="false"
       :auto-apply="true"
       :partial-flow="true"
+      :placeholder="placeholder"
       @update:model-value="emits('update:modelValue', $event)"
   />
   <TextInputComponent
