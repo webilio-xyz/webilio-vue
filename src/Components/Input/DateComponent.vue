@@ -47,9 +47,22 @@ defineProps({
 
 const emits = defineEmits(['update:modelValue']);
 
-const fixUTC = (date) => {
+const fixUTCDate = (date) => {
   if (!date) return null;
-  let utcDate = new Date(date);
+
+  //check if date is an array
+  if(Array.isArray(date)) {
+    return date.map((d) => {
+      let utcDate = new Date(d);
+      return fixUTC(utcDate);
+    })
+  }else{
+    let utcDate = new Date(date);
+    return fixUTC(utcDate);
+  }
+}
+
+const fixUTC = (utcDate) => {
   utcDate.setMinutes(utcDate.getMinutes() + Math.abs(utcDate.getTimezoneOffset()));
   return utcDate.toISOString().split('Z')[0];
 }
@@ -60,9 +73,9 @@ const fixUTC = (date) => {
   <VueDatePicker
       v-if="localizedFormat"
       class="print:hidden wv-input wv-date-input"
-      :model-value="fixUTC(modelValue)"
-      :min-date="fixUTC(min)"
-      :max-date="fixUTC(max)"
+      :model-value="fixUTCDate(modelValue)"
+      :min-date="fixUTCDate(min)"
+      :max-date="fixUTCDate(max)"
       :enable-time-picker="false"
       :format="localizedFormat"
       :locale="locale"
