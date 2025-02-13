@@ -23,6 +23,7 @@
     "@dzangolab/vue-country-flag-icon": "^0.3.0",
     "@heroicons/vue": "^2.1.*",
     "@inertiajs/vue3": "^1.2.0",
+    "@phosphor-icons/vue": "^2.2.1",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vuepic/vue-datepicker": "^9.*",
     "laravel-vue-i18n": "^2.7",
