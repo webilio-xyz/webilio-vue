@@ -4,10 +4,6 @@ const props = defineProps({
     type: Array,
     required: true
   },
-  currentStep: {
-    type: Number,
-    default: 0
-  },
   activeItemColor: {
     type: String,
     default: '#0000ff'

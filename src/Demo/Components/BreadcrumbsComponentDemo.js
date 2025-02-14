@@ -14,11 +14,6 @@ export default {
                 ],
             }
         },
-        'currentStep': {
-            props: {
-                'modelValue': 1,
-            }
-        },
         'activeItemColor': {
             props: {
                 'modelValue': '#ffffc0',
