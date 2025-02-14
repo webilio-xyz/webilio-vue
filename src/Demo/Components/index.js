@@ -3,6 +3,7 @@ import AlertComponent from "../../Components/Component/AlertComponent.vue";
 import StepsComponent from "./StepsComponentDemo.js";
 import BreadcrumbsComponent from "./BreadcrumbsComponentDemo.js";
 import TagComponent from "./TagComponentDemo.js";
+import AvatarComponent from "./AvatarComponentDemo.js";
 
 export const Components = {
     'ButtonComponent': ButtonComponentDemo,
@@ -10,6 +11,7 @@ export const Components = {
     'StepsComponent': StepsComponent,
     'BreadcrumbsComponent': BreadcrumbsComponent,
     'TagComponent': TagComponent,
+    'AvatarComponent': AvatarComponent,
 }
 
 export default Components;
