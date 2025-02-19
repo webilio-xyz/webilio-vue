@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from "vue";
 import AvatarComponent from "./AvatarComponent.vue";
+import { AkSend } from '@kalimahapps/vue-icons';
 
 const props = defineProps({
   avatar: {
@@ -38,11 +39,8 @@ const props = defineProps({
         :placeholder="props.inputPlaceholder"
       />
     </div>
-    <div class="border rounded-r-2xl p-2 leading-loose cursor-pointer">
-      <!-- <mat-icon
-          class="icon-size-5 rotate-90 align-middle"
-          [svgIcon]="'heroicons_solid:paper-airplane'"
-      ></mat-icon> -->
+    <div class="border rounded-r-2xl flex items-center p-2 leading-loose cursor-pointer">
+      <AkSend class="icon-size"/>
     </div>
   </div>
 </template>
@@ -51,5 +49,9 @@ const props = defineProps({
 .no-focus-border:focus {
   outline: none;
   border: none;
+}
+
+.icon-size {
+  font-size: 25px;
 }
 </style>

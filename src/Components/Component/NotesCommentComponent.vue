@@ -54,7 +54,7 @@ const props = defineProps({
   }
 });
 
-const replyMode = ref(false);
+const replyMode = ref(null);
 
 const commentsArray = computed(() => {
   return props.comments;
@@ -65,21 +65,21 @@ const getUsername = (comment) => {
 };
 
 const canReply = (comment) => {
-  return comment.parent_id === null && !replyMode.value;
+  return comment.parent_id === null && replyMode.value !== comment.id;
 };
 
 const isReplyOpen = (comment) => {
-  return comment.parent_id === null && replyMode.value;
+  return replyMode.value === comment.id;
 };
 
-const toggleReplyMode = () => {
-  replyMode.value = !replyMode.value;
+const toggleReplyMode = (comment) => {
+  replyMode.value = replyMode.value === comment.id ? null : comment.id;
 };
 
 const sendReply = ($event, comment) => {
   $event.parent_id = comment.id;
   emit('send', $event);
-  toggleReplyMode();
+  toggleReplyMode(comment);
 };
 </script>
 
@@ -110,7 +110,7 @@ const sendReply = ($event, comment) => {
         </div>
         <div class="flex">
           <div class="ml-4 mt-1 text-secondary w-full">
-            <span class="cursor-pointer hover:underline" v-if="canReply(comment)" @click="toggleReplyMode">Répondre</span>
+            <span class="cursor-pointer hover:underline" v-if="canReply(comment)" @click="toggleReplyMode(comment)">Répondre</span>
             <NotesInputComponent v-if="isReplyOpen(comment)" @send="sendReply($event, comment)" />
           </div>
         </div>
