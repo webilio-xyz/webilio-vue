@@ -7,6 +7,7 @@ import AvatarComponent from "./AvatarComponentDemo.js";
 import NotesInputComponent from "./NotesInputComponentDemo.js";
 import NotesCommentComponent from "./NotesCommentComponentDemo.js";
 import DropzoneComponent from "./DropzoneComponentDemo.js";
+import FoldableComponent from "./FoldableComponentDemo.js";
 
 export const Components = {
     'ButtonComponent': ButtonComponentDemo,
@@ -18,6 +19,7 @@ export const Components = {
     'NotesInputComponent': NotesInputComponent,
     'NotesCommentComponent': NotesCommentComponent,
     'DropzoneComponent': DropzoneComponent,
+    'FoldableComponent': FoldableComponent,
 }
 
 export default Components;
