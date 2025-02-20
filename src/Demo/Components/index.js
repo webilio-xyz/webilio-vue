@@ -8,6 +8,7 @@ import NotesInputComponent from "./NotesInputComponentDemo.js";
 import NotesCommentComponent from "./NotesCommentComponentDemo.js";
 import DropzoneComponent from "./DropzoneComponentDemo.js";
 import FoldableComponent from "./FoldableComponentDemo.js";
+import InfiniteScrollComponent from "../../Components/Component/InfiniteScrollComponent.vue";
 
 export const Components = {
     'ButtonComponent': ButtonComponentDemo,
@@ -20,6 +21,7 @@ export const Components = {
     'NotesCommentComponent': NotesCommentComponent,
     'DropzoneComponent': DropzoneComponent,
     'FoldableComponent': FoldableComponent,
+    'InfiniteScrollComponent': InfiniteScrollComponent,
 }
 
 export default Components;
