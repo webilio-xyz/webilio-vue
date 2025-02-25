@@ -54,6 +54,10 @@ const props = defineProps({
     taggable: {
         type: Boolean,
         default: false
+    },
+    enableTimePicker: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -99,6 +103,7 @@ const maska = computed(() => {
             :searchable="searchable"
             :placeholder="placeholder"
             :taggable="taggable"
+            :enable-time-picker="enableTimePicker"
             @update:model-value="emit('update:modelValue', $event)"
             @tag="emit('tag', $event)"
         />
