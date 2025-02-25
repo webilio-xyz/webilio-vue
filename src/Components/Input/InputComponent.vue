@@ -133,16 +133,6 @@ const maska = computed(() => {
       :disabled="disabled"
       @update:model-value="emit('update:modelValue', $event)"
   />
-  <Date
-      v-else-if="type === 'time'"
-      :id="formGroupUniqueId"
-      :name="name"
-      :model-value="modelValue"
-      class="w-full"
-      :time-picker="true"
-      :disabled="disabled"
-      @update:model-value="emit('update:modelValue', $event)"
-  />
   <TextInput
       v-else
       :id="formGroupUniqueId"

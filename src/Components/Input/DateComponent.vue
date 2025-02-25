@@ -35,10 +35,6 @@ defineProps({
     type: Boolean,
     default: false
   },
-  timePicker: {
-    type: Boolean,
-    default: false
-  },
   clearable: {
     type: Boolean,
     default: true
@@ -91,7 +87,7 @@ const fixUTC = (utcDate) => {
       :select-text="$t('Select')"
       :cancel-text-text="$t('Cancel')"
       :now-button-label="$t('Now')"
-      :time-picker="timePicker"
+      :time-picker="false"
       :auto-apply="true"
       :partial-flow="true"
       :placeholder="placeholder"
