@@ -31,6 +31,14 @@ defineProps({
   modelValue: String,
   min: String,
   max: String,
+  enableTimePicker: {
+    type: Boolean,
+    default: false
+  },
+  timePicker: {
+    type: Boolean,
+    default: false
+  },
   clearable: {
     type: Boolean,
     default: true
@@ -76,14 +84,14 @@ const fixUTC = (utcDate) => {
       :model-value="fixUTCDate(modelValue)"
       :min-date="fixUTCDate(min)"
       :max-date="fixUTCDate(max)"
-      :enable-time-picker="false"
+      :enable-time-picker="enableTimePicker"
       :format="localizedFormat"
       :locale="locale"
       :range="range"
       :select-text="$t('Select')"
       :cancel-text-text="$t('Cancel')"
       :now-button-label="$t('Now')"
-      :time-picker="false"
+      :time-picker="timePicker"
       :auto-apply="true"
       :partial-flow="true"
       :placeholder="placeholder"

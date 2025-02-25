@@ -49,6 +49,10 @@ const props = defineProps({
   taggable: {
     type: Boolean,
     default: false
+  },
+  enableTimePicker: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -125,6 +129,17 @@ const maska = computed(() => {
       :max="max"
       :min="min"
       :range="range"
+      :enable-time-picker="enableTimePicker"
+      :disabled="disabled"
+      @update:model-value="emit('update:modelValue', $event)"
+  />
+  <Date
+      v-else-if="type === 'time'"
+      :id="formGroupUniqueId"
+      :name="name"
+      :model-value="modelValue"
+      class="w-full"
+      :time-picker="true"
       :disabled="disabled"
       @update:model-value="emit('update:modelValue', $event)"
   />
