@@ -1,6 +1,6 @@
 {
   "name": "@webilio-xyz/webilio-vue",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -24,7 +24,8 @@
     "@heroicons/vue": "^2.1.*",
     "@inertiajs/vue3": "^1.2.0",
     "@vitejs/plugin-vue": "^5.1.2",
-    "@vuepic/vue-datepicker": "^9.*",
+    "@vuepic/vue-datepicker": "^11",
+    "date-fns": "^4.1.0",
     "laravel-vue-i18n": "^2.7",
     "lodash-es": "^4.*",
     "maska": "^3.0.0",

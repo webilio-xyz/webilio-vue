@@ -4,12 +4,23 @@ import {trans, isLoaded, getActiveLanguage} from "laravel-vue-i18n";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
+import { parse, format } from 'date-fns';
+import { enGB } from 'date-fns/locale';
 
 const localizedFormat = computed(() => {
+  let formatString = 'yyyy-MM-dd';
   if(isLangLoaded.value) {
-    return trans('date.format').toString();
+    try{
+      const translatedFormat = trans('date.format').toString();
+      const parsedDate = parse('29/10/1989', 'P', new Date(), { locale: enGB });
+      format(parsedDate, translatedFormat);
+      formatString = translatedFormat;
+    } catch (e) {
+      //do nothing
+    }
   }
-  return null;
+
+  return formatString;
 });
 
 const isLangLoaded = ref(false);
