@@ -4,11 +4,11 @@ import {trans, isLoaded, getActiveLanguage} from "laravel-vue-i18n";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
-import { parse, format } from 'date-fns';
+import { parse, format, parseISO } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 
 const localizedFormat = computed(() => {
-  let formatString = 'yyyy-MM-dd';
+  let formatString = 'yyyy/MM/dd';
   if(isLangLoaded.value) {
     try{
       const translatedFormat = trans('date.format').toString();
@@ -73,13 +73,17 @@ const fixUTCDate = (date) => {
     })
   }else{
     let utcDate = new Date(date);
-    return fixUTC(utcDate);
+    utcDate = fixUTC(utcDate);
+    return utcDate;
   }
 }
 
 const fixUTC = (utcDate) => {
-  utcDate.setMinutes(utcDate.getMinutes() + Math.abs(utcDate.getTimezoneOffset()));
-  return utcDate.toISOString().split('Z')[0];
+  return parseISO(utcDate.toISOString());
+}
+
+const updateModelValue = (value) => {
+  emits('update:modelValue', value);
 }
 
 </script>
@@ -102,7 +106,7 @@ const fixUTC = (utcDate) => {
       :auto-apply="true"
       :partial-flow="true"
       :placeholder="placeholder"
-      @update:model-value="emits('update:modelValue', $event)"
+      @update:model-value="updateModelValue"
   />
   <TextInputComponent
       class="hidden print:block w-full wv-input wv-date-input"
