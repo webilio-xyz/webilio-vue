@@ -53,7 +53,11 @@ const props = defineProps({
   enableTimePicker: {
     type: Boolean,
     default: false
-  }
+  },
+    deselectable: {
+      type: Boolean,
+        default: true
+    }
 });
 
 const emit = defineEmits(['update:modelValue', 'tag']);
@@ -108,6 +112,7 @@ const maska = computed(() => {
       :multiple="multiple"
       :searchable="searchable"
       :taggable="taggable"
+      :deselectable="deselectable"
       @update:model-value="emit('update:modelValue', $event)"
       @tag="emit('tag', $event)"
   />
