@@ -8,6 +8,8 @@ import SelectComponent from "./SelectComponent.vue";
 import TextareaComponent from "./TextareaComponent.vue";
 import TextInputComponent from "./TextInputComponent.vue";
 import ToggleComponent from "./ToggleComponent.vue";
+import SidebarComponent from "../Layout/SidebarComponent.vue";
+import MenuItemComponent from "../Layout/MenuItemComponent.vue";
 
 export {
     CheckboxComponent,
@@ -20,6 +22,8 @@ export {
     TextareaComponent,
     TextInputComponent,
     ToggleComponent,
+    SidebarComponent,
+    MenuItemComponent,
 };
 
 export default {
@@ -33,4 +37,6 @@ export default {
     TextareaComponent,
     TextInputComponent,
     ToggleComponent,
+    SidebarComponent,
+    MenuItemComponent,
 }
