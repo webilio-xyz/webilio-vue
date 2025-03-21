@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from "vue";
 import { ErrorComponent } from "@webilio-xyz/webilio-vue/Input";
 import LabelComponent from "../Input/LabelComponent.vue";
 import { uniqueId } from "lodash-es";
-import { PhFile } from "@phosphor-icons/vue";
+import { ArrowUpTrayIcon } from '@heroicons/vue/24/solid'
 import ButtonComponent from "./ButtonComponent.vue";
 
 const emit = defineEmits(["file-selected", "file-removed"]);
@@ -152,7 +152,7 @@ const displayError = computed(() => {
         <div v-if="files.length" class="flex flex-col space-y-2 w-full">
             <div v-for="(file, index) in files" :key="index" class="flex items-center justify-between w-full">
                 <div class="flex items-center">
-                    <ph-file class="bg-danger text-white rounded-full w-6 h-6 p-1 m-1" />
+                    <ArrowUpTrayIcon class="bg-danger text-white rounded-full w-6 h-6 p-1 m-1" />
                     <div class="flex flex-col">
                         <span class="font-semibold text-gray-800">
                             {{ file.name }}

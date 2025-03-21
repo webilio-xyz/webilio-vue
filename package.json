@@ -1,6 +1,6 @@
 {
   "name": "@webilio-xyz/webilio-vue",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -21,10 +21,9 @@
   },
   "dependencies": {
     "@dzangolab/vue-country-flag-icon": "^0.3.0",
-    "@heroicons/vue": "^2.1.*",
+    "@heroicons/vue": "^2.2.0",
     "@inertiajs/vue3": "^1.2.0",
     "@kalimahapps/vue-icons": "^1.7.1",
-    "@phosphor-icons/vue": "^2.2.1",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vuepic/vue-datepicker": "^11",
     "date-fns": "^4.1.0",

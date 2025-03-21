@@ -3,8 +3,8 @@ import {computed, ref, toRaw} from "vue";
 import MenuItems from "./MenuItemsComponent.vue";
 import {Link} from '@inertiajs/vue3';
 import {forEach} from "lodash-es";
-import * as heroIcons from '@heroicons/vue/24/solid';
-import * as phosphorIcons from '@phosphor-icons/vue';
+// import * as heroIcons from '@heroicons/vue/24/solid';
+// import * as phosphorIcons from '@phosphor-icons/vue';
 const props = defineProps({
     level: {
         type: Number,
@@ -21,15 +21,17 @@ const hasSubmenu = computed(() => {
 });
 
 const hasIcon = computed(() => {
-    return !!props.item.icon
+  return false;
+  // TODO
+    // return !!props.item.icon
 });
 
-const icon = computed(() => {
-    if (props.item.icon.startsWith('Ph') && phosphorIcons[props.item.icon]) {
-        return phosphorIcons[props.item.icon];
-    }
-    return heroIcons[props.item.icon];
-});
+// const icon = computed(() => {
+//     if (props.item.icon.startsWith('Ph') && phosphorIcons[props.item.icon]) {
+//         return phosphorIcons[props.item.icon];
+//     }
+//     return heroIcons[props.item.icon];
+// });
 
 
 const hrefLink = computed(() => {

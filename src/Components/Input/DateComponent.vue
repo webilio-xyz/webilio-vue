@@ -5,14 +5,13 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
 import { parse, format, parseISO } from 'date-fns';
-import { enGB } from 'date-fns/locale';
 
 const localizedFormat = computed(() => {
   let formatString = 'yyyy/MM/dd';
   if(isLangLoaded.value) {
     try{
       const translatedFormat = trans('date.format').toString();
-      const parsedDate = parse('29/10/1989', 'P', new Date(), { locale: enGB });
+      const parsedDate = parse('29/10/1989', 'P', new Date());
       format(parsedDate, translatedFormat);
       formatString = translatedFormat;
     } catch (e) {
