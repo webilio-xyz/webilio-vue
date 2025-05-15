@@ -62,6 +62,10 @@ const props = defineProps({
     deselectable: {
         type: Boolean,
         default: true
+    },
+    customClass: {
+      type: String,
+      default: ''
     }
 });
 
@@ -109,6 +113,7 @@ const maska = computed(() => {
             :taggable="taggable"
             :deselectable="deselectable"
             :enable-time-picker="enableTimePicker"
+            :custom-class="customClass"
             @update:model-value="emit('update:modelValue', $event)"
             @tag="emit('tag', $event)"
         />

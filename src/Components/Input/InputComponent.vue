@@ -57,7 +57,11 @@ const props = defineProps({
     deselectable: {
       type: Boolean,
         default: true
-    }
+    },
+  customClass: {
+    type: String,
+    default: ''
+  }
 });
 
 const emit = defineEmits(['update:modelValue', 'tag']);
@@ -83,7 +87,7 @@ const maska = computed(() => {
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
-      class="size-10"
+      :class="'size-10' + ' ' + customClass"
       :disabled="disabled"
       @update:model-value="emit('update:modelValue', $event)"
   />
@@ -96,6 +100,7 @@ const maska = computed(() => {
         :name="name"
         :model-value="!!modelValue"
         size="15"
+        :class="customClass"
         :disabled="disabled"
         @update:model-value="emit('update:modelValue', $event)"
     />
@@ -106,7 +111,7 @@ const maska = computed(() => {
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
-      class="w-full"
+      :class="'w-full' + ' ' + customClass"
       :options="options"
       :disabled="disabled"
       :multiple="multiple"
@@ -121,7 +126,7 @@ const maska = computed(() => {
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
-      class="w-full"
+      :class="'w-full' + ' ' + customClass"
       :disabled="disabled"
       @update:model-value="emit('update:modelValue', $event)"
   />
@@ -130,7 +135,7 @@ const maska = computed(() => {
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
-      class="w-full"
+      :class="'w-full' + ' ' + customClass"
       :max="max"
       :min="min"
       :range="range"
@@ -149,7 +154,7 @@ const maska = computed(() => {
       :min="min"
       :max="max"
       :mask="maska"
-      class="w-full"
+      :class="'w-full' + ' ' + customClass"
       @update:model-value="emit('update:modelValue', $event)"
   />
 </template>
