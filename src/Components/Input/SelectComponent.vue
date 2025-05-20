@@ -93,11 +93,14 @@ const computedOptions = computed(() => {
 
 const remove = (option) => {
   if (props.deselectable) {
-    const optionValue = option?.value;
-    const values = map(proxyValue.value ?? [], (item) => item?.value);
-    const newValue = values.filter((item) => {
-      return item !== optionValue;
-    });
+    let newValue = undefined;
+    if(props.multiple){
+      const optionValue = option?.value;
+      const values = map(proxyValue.value ?? [], (item) => item?.value);
+      newValue = values.filter((item) => {
+        return item !== optionValue;
+      });
+    }
     emit('update:modelValue', newValue);
   }
 }
