@@ -32,7 +32,7 @@ const props = defineProps({
   },
   headerClass: {
     type: String,
-    default: ''
+    default: 'sticky border-b-2 h-20 bg-gray-100 z-10 text-gray-700 text-xs font-medium uppercase shadow-md'
   },
   trHeadClass: {
     type: String,
