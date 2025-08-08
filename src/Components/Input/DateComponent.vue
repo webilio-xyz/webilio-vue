@@ -5,6 +5,7 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
 import { parse, format, parseISO } from 'date-fns';
+import {fromZonedTime} from "date-fns-tz";
 
 const localizedFormat = computed(() => {
   let formatString = 'yyyy/MM/dd';
@@ -67,18 +68,11 @@ const fixUTCDate = (date) => {
   //check if date is an array
   if(Array.isArray(date)) {
     return date.map((d) => {
-      let utcDate = new Date(d);
-      return fixUTC(utcDate);
+      return fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
     })
   }else{
-    let utcDate = new Date(date);
-    utcDate = fixUTC(utcDate);
-    return utcDate;
+    return fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
   }
-}
-
-const fixUTC = (utcDate) => {
-  return parseISO(utcDate.toISOString());
 }
 
 const updateModelValue = (value) => {
