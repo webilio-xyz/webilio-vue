@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref} from 'vue';
 import { vMaska } from "maska/vue";
-defineProps({
+const props = defineProps({
     modelValue: String,
     min: String,
     max: String,
