@@ -14,7 +14,6 @@ const props = defineProps({
 defineEmits(['update:modelValue']);
 
 const input = ref(null);
-const isMasked = ref(props.mask == null)
 
 onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
@@ -33,6 +32,6 @@ defineExpose({ focus: () => input.value.focus() });
         :value="modelValue"
         :min="min"
         :max="max"
-        @input="isMasked ? $emit('update:modelValue', $event.target.value) : isMasked = true"
+        @input="$emit('update:modelValue', $event.target.value)"
     >
 </template>
