@@ -127,6 +127,7 @@ const maska = computed(() => {
       :name="name"
       :model-value="modelValue"
       :class="'w-full' + ' ' + customClass"
+      :placeholder="placeholder"
       :disabled="disabled"
       @update:model-value="emit('update:modelValue', $event)"
   />
