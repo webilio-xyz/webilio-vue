@@ -38,7 +38,7 @@ const locale = computed(() => {
   return getActiveLanguage();
 })
 
-defineProps({
+const props = defineProps({
   modelValue: String,
   min: String,
   max: String,
@@ -68,12 +68,24 @@ const fixUTCDate = (date) => {
   //check if date is an array
   if(Array.isArray(date)) {
     return date.map((d) => {
-      return fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
+      return fromZonedTime(d, Intl.DateTimeFormat().resolvedOptions().timeZone);
     })
   }else{
     return fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
   }
 }
+
+const fixedModelValue = computed(() => {
+  return fixUTCDate(props.modelValue);
+})
+
+const fixedMinDate = computed(() => {
+  return fixUTCDate(props.min);
+})
+
+const fixedMaxDate = computed(() => {
+  return fixUTCDate(props.max);
+})
 
 const updateModelValue = (value) => {
   emits('update:modelValue', value);
@@ -85,9 +97,9 @@ const updateModelValue = (value) => {
   <VueDatePicker
       v-if="localizedFormat"
       class="print:hidden wv-input wv-date-input"
-      :model-value="fixUTCDate(modelValue)"
-      :min-date="fixUTCDate(min)"
-      :max-date="fixUTCDate(max)"
+      :model-value="fixedModelValue"
+      :min-date="fixedMinDate"
+      :max-date="fixedMaxDate"
       :enable-time-picker="enableTimePicker"
       :format="localizedFormat"
       :locale="locale"
