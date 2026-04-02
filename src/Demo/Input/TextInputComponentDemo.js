@@ -10,6 +10,12 @@ export default {
                 'modelValue': 'This is text',
             }
         },
+        'type': {
+            props: {
+                'type': 'string',
+                'modelValue': 'text',
+            }
+        },
         'min': {
             props: {
                 'modelValue': null,
@@ -21,6 +27,31 @@ export default {
             }
         },
         'mask': {
+            props: {
+                'modelValue': null,
+            }
+        },
+        'precision': {
+            props: {
+                'type': 'number',
+                'precision': 0,
+                'modelValue': '3',
+            }
+        },
+        'step': {
+            props: {
+                'type': 'number',
+                'modelValue': '0.01',
+            }
+        },
+    },
+    slotsToDemo: {
+        'prefix': {
+            props: {
+                'modelValue': null,
+            }
+        },
+        'suffix': {
             props: {
                 'modelValue': null,
             }

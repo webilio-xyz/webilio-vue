@@ -66,6 +66,14 @@ const props = defineProps({
     customClass: {
       type: String,
       default: ''
+    },
+    precision: {
+        type: Number,
+        default: null
+    },
+    step: {
+        type: [String, Number],
+        default: null
     }
 });
 
@@ -114,9 +122,18 @@ const maska = computed(() => {
             :deselectable="deselectable"
             :enable-time-picker="enableTimePicker"
             :custom-class="customClass"
+            :precision="precision"
+            :step="step"
             @update:model-value="emit('update:modelValue', $event)"
             @tag="emit('tag', $event)"
-        />
+        >
+            <template v-if="$slots.prefix" #prefix>
+                <slot name="prefix" />
+            </template>
+            <template v-if="$slots.suffix" #suffix>
+                <slot name="suffix" />
+            </template>
+        </InputComponent>
 
         <ErrorComponent
             v-if="errors"

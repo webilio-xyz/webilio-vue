@@ -61,6 +61,14 @@ const props = defineProps({
   customClass: {
     type: String,
     default: ''
+  },
+  precision: {
+    type: Number,
+    default: null
+  },
+  step: {
+    type: [String, Number],
+    default: null
   }
 });
 
@@ -155,9 +163,18 @@ const maska = computed(() => {
       :min="min"
       :max="max"
       :mask="maska"
+      :precision="precision"
+      :step="step"
       :class="'w-full' + ' ' + customClass"
       @update:model-value="emit('update:modelValue', $event)"
-  />
+  >
+      <template v-if="$slots.prefix" #prefix>
+          <slot name="prefix" />
+      </template>
+      <template v-if="$slots.suffix" #suffix>
+          <slot name="suffix" />
+      </template>
+  </TextInput>
 </template>
 
 <style scoped>
