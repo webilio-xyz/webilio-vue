@@ -43,6 +43,15 @@ const computedStep = computed(() => {
     return null;
 });
 
+const clampValue = (value) => {
+    if (!isNumeric.value || value === '' || value === '-' || value === '.' || value === '-.') return value;
+    const num = parseFloat(value);
+    if (isNaN(num)) return value;
+    if (props.min !== null && num < parseFloat(props.min)) return props.min;
+    if (props.max !== null && num > parseFloat(props.max)) return props.max;
+    return value;
+};
+
 const onInput = (event) => {
     let value = event.target.value;
 
@@ -54,6 +63,8 @@ const onInput = (event) => {
         }
     }
 
+    value = clampValue(value);
+    event.target.value = value;
     emit('update:modelValue', value);
 };
 
