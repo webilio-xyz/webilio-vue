@@ -74,6 +74,10 @@ const props = defineProps({
     step: {
         type: [String, Number],
         default: null
+    },
+    inputClass: {
+        type: [String, Array, Object],
+        default: null
     }
 });
 
@@ -124,6 +128,7 @@ const maska = computed(() => {
             :custom-class="customClass"
             :precision="precision"
             :step="step"
+            :input-class="inputClass"
             @update:model-value="emit('update:modelValue', $event)"
             @tag="emit('tag', $event)"
         >

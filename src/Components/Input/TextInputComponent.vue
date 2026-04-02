@@ -20,6 +20,10 @@ const props = defineProps({
     step: {
         type: [String, Number],
         default: null
+    },
+    inputClass: {
+        type: [String, Array, Object],
+        default: null
     }
 });
 
@@ -89,7 +93,7 @@ defineExpose({ focus: () => input.value.focus() });
             v-maska="mask"
             :type="inputType"
             :inputmode="inputMode"
-            class="wv-input wv-text-input flex-1 border-0 focus:ring-0 disabled:bg-gray-200 px-1"
+            :class="['wv-input wv-text-input flex-1 border-0 focus:ring-0 disabled:bg-gray-200 px-1', inputClass]"
             :value="modelValue"
             :min="min"
             :max="max"
