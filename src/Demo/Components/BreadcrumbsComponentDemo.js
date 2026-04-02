@@ -3,7 +3,7 @@ import BreadcrumbsComponent from "../../Components/Component/BreadcrumbsComponen
 export default {
     component: BreadcrumbsComponent,
     description: "Breadcrumbs ",
-    importStatement: "import { BreadcrumbsComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { BreadcrumbsComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'items': {
             props: {

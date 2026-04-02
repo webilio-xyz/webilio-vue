@@ -140,6 +140,38 @@ const addTag = (newTag) => {
     <template #noOptions>
       {{ $t('select.noOptions') }}
     </template>
+    <template #tag>
+      {{ $t('select.tag') }}
+    </template>
+
+    <template #beforeList v-if="$slots.beforeList">
+      <slot name="beforeList" />
+    </template>
+
+    <template #afterList v-if="$slots.afterList">
+      <slot name="afterList" />
+    </template>
+    <template #caret v-if="$slots.caret">
+      <slot name="caret" />
+    </template>
+    <template #singleLabel v-if="$slots.singleLabel">
+      <slot name="singleLabel" />
+    </template>
+    <template #placeholder v-if="$slots.placeholder">
+      <slot name="placeholder" />
+    </template>
+    <template #limit v-if="$slots.limit">
+      <slot name="limit" />
+    </template>
+    <template #clear v-if="$slots.clear">
+      <slot name="clear" />
+    </template>
+    <template #tag v-if="$slots.tag">
+      <slot name="tag" />
+    </template>
+    <template #selection v-if="$slots.selection">
+      <slot name="selection" />
+    </template>
   </Multiselect>
 </template>
 

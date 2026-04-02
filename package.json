@@ -1,27 +1,50 @@
 {
   "name": "@webilio-xyz/webilio-vue",
-  "version": "1.0.43",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
+    "build:lib": "vite build --config vite.config.lib.js",
     "preview": "vite preview",
-    "lint": "eslint \"src/**/*.{js,vue}\" --fix"
+    "lint": "eslint \"src/**/*.{js,vue}\" --fix",
+    "prepublishOnly": "npm run build:lib"
   },
   "private": false,
   "homepage": "https://webilio-xyz.github.io/webilio-vue/",
   "author": "",
   "license": "ISC",
   "description": "Webilio Vue Components Library",
-  "main": "src/components/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": "./src/Components/index.js",
-    "./*": "./src/Components/*/index.js",
-    "./Models": "./src/Models/index.js"
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./Input": {
+      "import": "./dist/Input.js"
+    },
+    "./Table": {
+      "import": "./dist/Table.js"
+    },
+    "./Layout": {
+      "import": "./dist/Layout.js"
+    },
+    "./Modal": {
+      "import": "./dist/Modal.js"
+    },
+    "./Component": {
+      "import": "./dist/Component.js"
+    },
+    "./Models": {
+      "import": "./dist/Models.js"
+    }
   },
   "dependencies": {
     "@dzangolab/vue-country-flag-icon": "^0.3.0",
-    "@heroicons/vue": "^2.2.0",
     "@inertiajs/vue3": "^1.2.0",
     "@kalimahapps/vue-icons": "^1.7.1",
     "@vitejs/plugin-vue": "^5.1.2",

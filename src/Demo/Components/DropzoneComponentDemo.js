@@ -3,7 +3,7 @@ import DropzoneComponent from "../../Components/Component/DropzoneComponent.vue"
 export default {
     component: DropzoneComponent,
     description: "Dropzone Component",
-    importStatement: "import { DropzoneComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { DropzoneComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'label': {
             props: {

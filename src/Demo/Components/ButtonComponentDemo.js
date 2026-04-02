@@ -3,7 +3,7 @@ import ButtonComponent from "../../Components/Component/ButtonComponent.vue";
 export default {
     component: ButtonComponent,
     description: "Button ",
-    importStatement: "import { ButtonComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { ButtonComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'class': {
             props: {

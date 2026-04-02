@@ -3,8 +3,6 @@ import {computed, ref, toRaw} from "vue";
 import MenuItems from "./MenuItemsComponent.vue";
 import {Link} from '@inertiajs/vue3';
 import {forEach} from "lodash-es";
-// import * as heroIcons from '@heroicons/vue/24/solid';
-// import * as phosphorIcons from '@phosphor-icons/vue';
 const props = defineProps({
     level: {
         type: Number,

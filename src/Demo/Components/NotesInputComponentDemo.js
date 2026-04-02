@@ -3,7 +3,7 @@ import NotesInputComponent from "../../Components/Component/NotesInputComponent.
 export default {
     component: NotesInputComponent,
     description: "Notes Input ",
-    importStatement: "import { NotesInputComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { NotesInputComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'avatar': {
             props: {

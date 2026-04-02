@@ -1,6 +1,6 @@
 <script setup>
 import {computed, onMounted, onUnmounted, ref, watch} from 'vue';
-import {XMarkIcon} from "@heroicons/vue/24/solid/index.js";
+import { AkCross } from '@kalimahapps/vue-icons';
 
 const props = defineProps({
     show: {
@@ -132,7 +132,7 @@ const footerPositionClass = computed(() => {
                             <slot name="title" />
                           </div>
                           <div v-if="closeable">
-                            <XMarkIcon
+                            <AkCross
                                 class="w-5 h-5 cursor-pointer"
                                 @click="close"
                             />

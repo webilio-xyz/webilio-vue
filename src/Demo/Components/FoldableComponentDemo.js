@@ -3,7 +3,7 @@ import FoldableComponent from "../../Components/Component/FoldableComponent.vue"
 export default {
     component: FoldableComponent,
     description: "Foldable ",
-    importStatement: "import { FoldableComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { FoldableComponent } from '@webilio-xyz/webilio-vue/Component';",
     slotsToDemo: {
         'header': {
             props: {

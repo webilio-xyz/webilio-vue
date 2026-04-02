@@ -22,5 +22,12 @@ export default {
             }
         },
     },
+    slotsToDemo: {
+        'placeholder': {
+            props: {
+                'modelValue': null,
+            }
+        },
+    },
 
 }

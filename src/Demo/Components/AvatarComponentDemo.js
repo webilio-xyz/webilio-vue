@@ -3,7 +3,7 @@ import AvatarComponent from "../../Components/Component/AvatarComponent.vue";
 export default {
     component: AvatarComponent,
     description: "Avatar ",
-    importStatement: "import { AvatarComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { AvatarComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'name': {
             props: {

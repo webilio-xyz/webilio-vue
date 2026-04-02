@@ -3,7 +3,7 @@ import TagComponent from "../../Components/Component/TagComponent.vue";
 export default {
     component: TagComponent,
     description: "Tag ",
-    importStatement: "import { TagComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { TagComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'backgroundColor': {
             props: {

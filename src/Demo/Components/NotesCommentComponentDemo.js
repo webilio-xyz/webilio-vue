@@ -3,7 +3,7 @@ import NotesCommentComponent from "../../Components/Component/NotesCommentCompon
 export default {
     component: NotesCommentComponent,
     description: "Notes Comment Component",
-    importStatement: "import { NotesCommentComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { NotesCommentComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'user': {
             props: {

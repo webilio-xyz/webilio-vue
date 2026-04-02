@@ -3,7 +3,7 @@ import StepsComponent from "../../Components/Component/StepsComponent.vue";
 export default {
     component: StepsComponent,
     description: "Steps ",
-    importStatement: "import { StepsComponent } from '@webilio-xyz/webilio-vue/Components';",
+    importStatement: "import { StepsComponent } from '@webilio-xyz/webilio-vue/Component';",
     propsToDemo: {
         'steps': {
             props: {

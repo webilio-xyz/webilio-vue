@@ -4,16 +4,26 @@ import {trans, isLoaded, getActiveLanguage} from "laravel-vue-i18n";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
-import { parse, format, parseISO } from 'date-fns';
-import {fromZonedTime} from "date-fns-tz";
+
+let dateFns = null;
+let dateFnsTz = null;
+
+const loadDateFns = async () => {
+  if (!dateFns) {
+    [dateFns, dateFnsTz] = await Promise.all([
+      import('date-fns'),
+      import('date-fns-tz'),
+    ]);
+  }
+};
 
 const localizedFormat = computed(() => {
   let formatString = 'yyyy/MM/dd';
-  if(isLangLoaded.value) {
+  if(isLangLoaded.value && dateFns) {
     try{
       const translatedFormat = trans('date.format').toString();
-      const parsedDate = parse('29/10/1989', 'P', new Date());
-      format(parsedDate, translatedFormat);
+      const parsedDate = dateFns.parse('29/10/1989', 'P', new Date());
+      dateFns.format(parsedDate, translatedFormat);
       formatString = translatedFormat;
     } catch (e) {
       //do nothing
@@ -25,7 +35,8 @@ const localizedFormat = computed(() => {
 
 const isLangLoaded = ref(false);
 
-onMounted(() => {
+onMounted(async () => {
+  await loadDateFns();
   const a = setInterval(() => {
     if (isLoaded()) {
       isLangLoaded.value = true;
@@ -63,15 +74,15 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue']);
 
 const fixUTCDate = (date) => {
-  if (!date) return null;
+  if (!date || !dateFnsTz) return null;
 
   //check if date is an array
   if(Array.isArray(date)) {
     return date.map((d) => {
-      return fromZonedTime(d, Intl.DateTimeFormat().resolvedOptions().timeZone);
+      return dateFnsTz.fromZonedTime(d, Intl.DateTimeFormat().resolvedOptions().timeZone);
     })
   }else{
-    return fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
+    return dateFnsTz.fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
   }
 }
 

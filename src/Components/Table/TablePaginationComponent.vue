@@ -1,5 +1,5 @@
 <script setup>
-import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/vue/24/solid/index.js";
+import { AkChevronLeft, AkChevronRight } from '@kalimahapps/vue-icons';
 import {range} from "lodash-es";
 import {computed} from "vue";
 
@@ -51,7 +51,7 @@ const changePage = (page) => {
               :disabled="currentPage === 1"
               @click="changePage(currentPage - 1)"
           >
-              <ChevronLeftIcon class="w-5 h-5" />
+              <AkChevronLeft class="w-5 h-5" />
           </button>
       </slot>
 
@@ -180,7 +180,7 @@ const changePage = (page) => {
               :disabled="currentPage === lastPage"
               @click="changePage(currentPage + 1)"
           >
-              <ChevronRightIcon class="w-5 h-5" />
+              <AkChevronRight class="w-5 h-5" />
           </button>
       </slot>
   </div>
