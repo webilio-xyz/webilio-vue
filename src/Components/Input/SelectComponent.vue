@@ -140,8 +140,8 @@ const addTag = (newTag) => {
     <template #noOptions>
       {{ $t('select.noOptions') }}
     </template>
-    <template #tag>
-      {{ $t('select.tag') }}
+    <template #tag="tagProps" v-if="$slots.tag">
+      <slot name="tag" v-bind="tagProps"/>
     </template>
 
     <template #beforeList v-if="$slots.beforeList">
