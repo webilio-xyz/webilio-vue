@@ -84,7 +84,7 @@ defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
-    <div class="wv-text-input-wrapper flex items-center border border-gray-300 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 rounded-md shadow-sm">
+    <div class="wv-input wv-text-input-wrapper flex items-center border border-gray-300 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 rounded-md shadow-sm">
         <div v-if="$slots.prefix" class="wv-text-input-prefix flex items-center pl-2">
             <slot name="prefix" />
         </div>
@@ -93,7 +93,7 @@ defineExpose({ focus: () => input.value.focus() });
             v-maska="mask"
             :type="inputType"
             :inputmode="inputMode"
-            :class="['wv-input wv-text-input flex-1 border-0 focus:ring-0 disabled:bg-gray-200 px-1', inputClass]"
+            :class="['wv-text-input flex-1 border-0 focus:ring-0 disabled:bg-gray-200 px-1', inputClass]"
             :value="modelValue"
             :min="min"
             :max="max"
