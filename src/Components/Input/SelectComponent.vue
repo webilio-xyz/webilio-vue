@@ -54,6 +54,10 @@ const props = defineProps({
   taggable: {
     type: Boolean,
     default: false
+  },
+  preserveSearch: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -128,6 +132,7 @@ const addTag = (newTag) => {
       :group-values="groupValues"
       :group-label="groupLabel"
       :taggable="taggable"
+      :preserveSearch="preserveSearch"
       @tag="addTag"
       @remove="remove"
   >

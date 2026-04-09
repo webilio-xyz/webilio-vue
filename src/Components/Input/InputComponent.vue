@@ -73,6 +73,10 @@ const props = defineProps({
   inputClass: {
     type: [String, Array, Object],
     default: null
+  },
+  preserveSearch: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -130,6 +134,7 @@ const maska = computed(() => {
       :searchable="searchable"
       :taggable="taggable"
       :deselectable="deselectable"
+      :preserveSearch="preserveSearch"
       @update:model-value="emit('update:modelValue', $event)"
       @tag="emit('tag', $event)"
   />
