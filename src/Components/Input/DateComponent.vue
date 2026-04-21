@@ -68,6 +68,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     required: false
+  },
+  teleport: {
+    type: [Boolean, String],
+    default: false
   }
 });
 
@@ -122,6 +126,7 @@ const updateModelValue = (value) => {
       :auto-apply="true"
       :partial-flow="true"
       :placeholder="placeholder"
+      :teleport="teleport"
       @update:model-value="updateModelValue"
   />
   <TextInputComponent
