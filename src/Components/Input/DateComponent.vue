@@ -5,25 +5,27 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import TextInputComponent from "./TextInputComponent.vue";
 
-let dateFns = null;
-let dateFnsTz = null;
+const dateFns = ref(null);
+const dateFnsTz = ref(null);
 
 const loadDateFns = async () => {
-  if (!dateFns) {
-    [dateFns, dateFnsTz] = await Promise.all([
+  if (!dateFns.value) {
+    const [fns, tz] = await Promise.all([
       import('date-fns'),
       import('date-fns-tz'),
     ]);
+    dateFns.value = fns;
+    dateFnsTz.value = tz;
   }
 };
 
 const localizedFormat = computed(() => {
   let formatString = 'yyyy/MM/dd';
-  if(isLangLoaded.value && dateFns) {
+  if(isLangLoaded.value && dateFns.value) {
     try{
       const translatedFormat = trans('date.format').toString();
-      const parsedDate = dateFns.parse('29/10/1989', 'P', new Date());
-      dateFns.format(parsedDate, translatedFormat);
+      const parsedDate = dateFns.value.parse('29/10/1989', 'P', new Date());
+      dateFns.value.format(parsedDate, translatedFormat);
       formatString = translatedFormat;
     } catch (e) {
       //do nothing
@@ -78,15 +80,15 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue']);
 
 const fixUTCDate = (date) => {
-  if (!date || !dateFnsTz) return null;
+  if (!date || !dateFnsTz.value) return null;
 
   //check if date is an array
   if(Array.isArray(date)) {
     return date.map((d) => {
-      return dateFnsTz.fromZonedTime(d, Intl.DateTimeFormat().resolvedOptions().timeZone);
+      return dateFnsTz.value.fromZonedTime(d, Intl.DateTimeFormat().resolvedOptions().timeZone);
     })
   }else{
-    return dateFnsTz.fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
+    return dateFnsTz.value.fromZonedTime(date, Intl.DateTimeFormat().resolvedOptions().timeZone);
   }
 }
 

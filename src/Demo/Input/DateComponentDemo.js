@@ -8,7 +8,7 @@ export default {
     propsToDemo: {
         'modelValue': {
             props: {
-                'modelValue': null,
+                'modelValue': '2026-04-21',
             }
         },
         'min': {
