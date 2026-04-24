@@ -74,6 +74,10 @@ const props = defineProps({
   teleport: {
     type: [Boolean, String],
     default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -129,11 +133,13 @@ const updateModelValue = (value) => {
       :partial-flow="true"
       :placeholder="placeholder"
       :teleport="teleport"
+      :disabled="disabled"
       @update:model-value="updateModelValue"
   />
   <TextInputComponent
       class="hidden print:block w-full wv-input wv-date-input"
       :model-value="modelValue"
+      :disabled="disabled"
   />
 </template>
 
