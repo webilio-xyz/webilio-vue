@@ -1,9 +1,13 @@
 <script setup>
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, ref, useAttrs} from 'vue';
 import {uniqueId} from "lodash-es";
 import ErrorComponent from "./ErrorComponent.vue";
 import InputComponent from "./InputComponent.vue";
 import LabelComponent from "./LabelComponent.vue";
+
+defineOptions({
+  inheritAttrs: false
+});
 
 const props = defineProps({
   modelValue: String,
@@ -87,6 +91,18 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'tag']);
 
+const attrs = useAttrs();
+
+const inputAttrs = computed(() => {
+  const result = {};
+  for (const [key, value] of Object.entries(attrs)) {
+    if (key.startsWith('input-')) {
+      result[key.slice(6)] = value;
+    }
+  }
+  return result;
+});
+
 const formGroupUniqueId = ref(null);
 
 onMounted(() => {
@@ -114,6 +130,7 @@ const maska = computed(() => {
 
     <InputComponent
         :id="formGroupUniqueId"
+        v-bind="inputAttrs"
         :custom-class="customClass"
         :deselectable="deselectable"
         :disabled="disabled"

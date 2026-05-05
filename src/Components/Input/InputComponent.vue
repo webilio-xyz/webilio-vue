@@ -9,6 +9,10 @@ import {uniqueId} from "lodash-es";
 import Select from "./SelectComponent.vue";
 import Textarea from "./TextareaComponent.vue";
 
+defineOptions({
+  inheritAttrs: false
+});
+
 const props = defineProps({
   modelValue: String,
   type: {
@@ -100,6 +104,7 @@ const maska = computed(() => {
 <template>
   <Checkbox
       v-if="type === 'checkbox'"
+      v-bind="$attrs"
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
@@ -112,6 +117,7 @@ const maska = computed(() => {
       class="h-10 flex items-center"
   >
     <Toggle
+        v-bind="$attrs"
         :id="formGroupUniqueId"
         :name="name"
         :model-value="!!modelValue"
@@ -124,6 +130,7 @@ const maska = computed(() => {
 
   <Select
       v-else-if="type === 'select'"
+      v-bind="$attrs"
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
@@ -140,6 +147,7 @@ const maska = computed(() => {
   />
   <Textarea
       v-else-if="type === 'textarea'"
+      v-bind="$attrs"
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
@@ -150,6 +158,7 @@ const maska = computed(() => {
   />
   <Date
       v-else-if="type === 'date'"
+      v-bind="$attrs"
       :id="formGroupUniqueId"
       :name="name"
       :model-value="modelValue"
@@ -163,6 +172,7 @@ const maska = computed(() => {
   />
   <TextInput
       v-else
+      v-bind="$attrs"
       :id="formGroupUniqueId"
       :type="type"
       :name="name"

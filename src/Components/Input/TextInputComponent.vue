@@ -2,6 +2,10 @@
 import {computed, onMounted, ref} from 'vue';
 import {vMaska} from "maska/vue";
 
+defineOptions({
+  inheritAttrs: false
+});
+
 const props = defineProps({
   type: {
     type: String,
@@ -98,6 +102,7 @@ defineExpose({focus: () => input.value.focus()});
     </div>
     <input
         ref="input"
+        v-bind="$attrs"
         v-maska="mask"
         :class="['wv-text-input flex-1 border-0 focus:ring-0 disabled:bg-gray-200 px-1', inputClass]"
         :disabled="disabled"

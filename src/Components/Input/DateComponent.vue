@@ -117,6 +117,7 @@ const updateModelValue = (value) => {
 <template>
   <VueDatePicker
       v-if="localizedFormat"
+      v-bind="$attrs"
       class="print:hidden wv-input wv-date-input"
       :model-value="fixedModelValue"
       :min-date="fixedMinDate"
@@ -137,6 +138,7 @@ const updateModelValue = (value) => {
       @update:model-value="updateModelValue"
   />
   <TextInputComponent
+      v-bind="$attrs"
       class="hidden print:block w-full wv-input wv-date-input"
       :model-value="modelValue"
       :disabled="disabled"

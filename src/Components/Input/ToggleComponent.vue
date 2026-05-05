@@ -1,6 +1,10 @@
 <script setup>
 import { computed } from 'vue';
 
+defineOptions({
+    inheritAttrs: false
+});
+
 const emit = defineEmits(['update:checked', 'update:modelValue']);
 
 const props = defineProps({
@@ -49,6 +53,7 @@ const proxyChecked = computed({
         :class="{'cursor-pointer': !disabled}"
     >
         <input
+            v-bind="$attrs"
             v-model="proxyChecked"
             type="checkbox"
             value=""
