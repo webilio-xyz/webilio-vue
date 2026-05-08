@@ -1,5 +1,5 @@
 <script setup>
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 import {vMaska} from "maska/vue";
 
 defineOptions({
@@ -65,20 +65,49 @@ const clampValue = (value) => {
   return value;
 };
 
+const displayValue = ref(props.modelValue ?? '');
+
+watch(() => props.modelValue, (newVal) => {
+  const incoming = newVal ?? '';
+  if (isNumeric.value) {
+    const incomingNum = parseFloat(incoming);
+    const currentNum = parseFloat(displayValue.value);
+    if (!isNaN(incomingNum) && !isNaN(currentNum) && incomingNum === currentNum) return;
+  }
+  displayValue.value = incoming;
+});
+
 const onInput = (event) => {
   let value = event.target.value;
 
   if (isNumeric.value && props.precision !== null) {
     const regex = new RegExp(`^-?\\d*\\.?\\d{0,${props.precision}}$`);
     if (value !== '' && value !== '-' && value !== '.' && value !== '-.' && !regex.test(value)) {
-      event.target.value = props.modelValue || '';
+      event.target.value = displayValue.value;
       return;
     }
   }
 
   value = clampValue(value);
-  event.target.value = value;
+  if (event.target.value !== value) {
+    event.target.value = value;
+  }
+  displayValue.value = value;
   emit('update:modelValue', value);
+};
+
+const onBlur = (event) => {
+  if (!isNumeric.value) return;
+  let value = event.target.value;
+
+  if (value.endsWith('.')) value = value.slice(0, -1);
+  if (value === '' || value === '-' || isNaN(parseFloat(value))) value = '';
+
+  if (value !== event.target.value) {
+    displayValue.value = value;
+    event.target.value = value;
+    emit('update:modelValue', value);
+  }
 };
 
 const input = ref(null);
@@ -111,7 +140,8 @@ defineExpose({focus: () => input.value.focus()});
         :min="min"
         :step="computedStep"
         :type="inputType"
-        :value="modelValue"
+        :value="displayValue"
+        @blur="onBlur"
         @input="onInput"
     >
     <div v-if="$slots.suffix" class="wv-text-input-suffix flex items-center pr-2">
