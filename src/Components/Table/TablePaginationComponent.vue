@@ -1,7 +1,7 @@
 <script setup>
-import { AkChevronLeft, AkChevronRight } from '@kalimahapps/vue-icons';
+import { AkChevronLeft, AkChevronRight, AkArrowForward } from '@kalimahapps/vue-icons';
 import {range} from "lodash-es";
-import {computed} from "vue";
+import {computed, nextTick, ref} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -24,6 +24,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    goto: {
+        type: Boolean,
+        default: true
+    },
 });
 
 const currentPage = computed(() => props.modelValue);
@@ -38,6 +42,24 @@ const emits = defineEmits(['update:modelValue']);
 
 const changePage = (page) => {
   emits('update:modelValue', page);
+};
+
+const showGoto = ref(false);
+const gotoValue = ref(currentPage.value);
+const gotoInput = ref(null);
+
+const openGoto = async () => {
+    gotoValue.value = currentPage.value;
+    showGoto.value = true;
+    await nextTick();
+    gotoInput.value?.focus();
+    gotoInput.value?.select();
+};
+
+const submitGoto = () => {
+    const page = Math.min(Math.max(Math.round(Number(gotoValue.value)) || 1, 1), props.lastPage);
+    changePage(page);
+    showGoto.value = false;
 };
 
 </script>
@@ -183,6 +205,28 @@ const changePage = (page) => {
               <AkChevronRight class="w-5 h-5" />
           </button>
       </slot>
+
+      <template v-if="goto">
+          <input
+              v-if="showGoto"
+              ref="gotoInput"
+              v-model="gotoValue"
+              type="number"
+              :min="1"
+              :max="lastPage"
+              class="wv-pagination-goto-input"
+              @keyup.enter="submitGoto"
+              @blur="submitGoto"
+          />
+          <button
+              v-else
+              :class="lrClassButtons"
+              class="wv-pagination-button wv-pagination-goto"
+              @click="openGoto"
+          >
+              <AkArrowForward class="w-5 h-5" />
+          </button>
+      </template>
   </div>
 </template>
 
