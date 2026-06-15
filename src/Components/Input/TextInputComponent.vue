@@ -41,12 +41,12 @@ const emit = defineEmits(['update:modelValue']);
 const isNumeric = computed(() => props.type === 'number');
 
 const inputType = computed(() => {
-  if (isNumeric.value && props.precision !== null) return 'text';
+  if (isNumeric.value) return 'text';
   return props.type;
 });
 
 const inputMode = computed(() => {
-  if (isNumeric.value && props.precision !== null) return 'decimal';
+  if (isNumeric.value) return 'decimal';
   return null;
 });
 
@@ -80,8 +80,9 @@ watch(() => props.modelValue, (newVal) => {
 const onInput = (event) => {
   let value = event.target.value;
 
-  if (isNumeric.value && props.precision !== null) {
-    const regex = new RegExp(`^-?\\d*\\.?\\d{0,${props.precision}}$`);
+  if (isNumeric.value) {
+    const decimalQuantifier = props.precision !== null ? `{0,${props.precision}}` : '*';
+    const regex = new RegExp(`^-?\\d*\\.?\\d${decimalQuantifier}$`);
     if (value !== '' && value !== '-' && value !== '.' && value !== '-.' && !regex.test(value)) {
       event.target.value = displayValue.value;
       return;

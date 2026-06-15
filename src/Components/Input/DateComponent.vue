@@ -55,6 +55,10 @@ const props = defineProps({
   modelValue: String,
   min: String,
   max: String,
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   enableTimePicker: {
     type: Boolean,
     default: false
