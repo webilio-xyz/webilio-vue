@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from 'vue';
+import {computed, ref, watch} from 'vue';
 import Multiselect from 'vue-multiselect';
 import {map} from "lodash-es";
 
@@ -25,7 +25,7 @@ const props = defineProps({
   },
   openDirection: {
     type: String,
-    default: 'bottom'
+    default: 'auto'
   },
   closeOnSelect: {
     type: Boolean,
@@ -60,6 +60,8 @@ const props = defineProps({
     default: false
   }
 });
+
+const resolvedOpenDirection = computed(() => (props.openDirection === 'auto' ? '' : props.openDirection));
 
 const proxyValue = computed({
   get() {
@@ -113,17 +115,35 @@ const addTag = (newTag) => {
   emit('tag', newTag);
 }
 
+const multiselect = ref(null);
+
+watch(() => multiselect.value?.dropdownStyles, (styles) => {
+  const instance = multiselect.value;
+  if (!instance?.useTeleport || !instance.isAbove || !styles?.top || styles.transform) return;
+
+  const rect = instance.$el.getBoundingClientRect();
+  instance.dropdownStyles = {
+    ...styles,
+    top: `${rect.top + window.scrollY}px`,
+    transform: 'translateY(-100%)',
+    borderTop: '1px solid #e8e8e8',
+    borderBottom: 'none',
+    borderRadius: '5px 5px 0 0',
+  };
+});
+
 </script>
 <template>
   <Multiselect
       id="value"
+      ref="multiselect"
       v-model="proxyValue"
       class="wv-input wv-select-input border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
       :options="computedOptions"
       :placeholder="placeholder ?? $t('select.placeholder')"
       :multiple="multiple"
       :max="max"
-      :open-direction="openDirection"
+      :open-direction="resolvedOpenDirection"
       :close-on-select="closeOnSelect"
       label="label"
       :searchable="searchable"

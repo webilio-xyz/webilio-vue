@@ -21,6 +21,11 @@ export default {
                 'modelValue': null,
             }
         },
+        'openDirection': {
+            props: {
+                'modelValue': null,
+            }
+        },
     },
     slotsToDemo: {
         'maxElements': {
